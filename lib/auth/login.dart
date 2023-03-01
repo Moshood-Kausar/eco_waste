@@ -1,6 +1,8 @@
+import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   //     FirebaseDatabase.instance.reference().child("Students");
 
   TextEditingController? _email, _password;
-  bool _isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -23,8 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
     _password = TextEditingController();
   }
 
+  var _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    final AuthController _authController = Get.find();
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -38,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 200,
+                    height: 32,
                   ),
                   AppTextFormField(
                     controller: _email,
@@ -76,65 +80,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   const SizedBox(height: 100),
-                  _isLoading
-                      ? const Center(
-                          child: SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2.2,
+                  Obx(
+                    () => _authController.isLoading.value
+                        ? const Center(
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.2,
+                              ),
                             ),
+                          )
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width - 20,
+                            height: 48.0,
+                            child: AppButton(
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    Map<String, String> user = {
+                                      'email': _email!.text,
+                                      'password': _password!.text,
+                                    };
+                                    await _authController
+                                        .signInWithEmailAndPassword(
+                                      context,
+                                      user,
+                                    );
+                                  }
+                                },
+                                text: 'Login'),
                           ),
-                        )
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width - 20,
-                          height: 48.0,
-                          child: AppButton(
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  setState(() {
-                                    Navigator.pushNamed(context, '/dashboard');
-                                    _isLoading = true;
-                                  });
-                                  // try {
-                                  //   await FirebaseAuth.instance
-                                  //       .signInWithEmailAndPassword(
-                                  //           email: _email!.text.trim(),
-                                  //           password: _password!.text)
-                                  //       .then(
-                                  //     (value) {
-                                  //       _isLoading = false;
-
-                                  //    // db.child(value.user!.payment)
-
-                                  //       // db.child(value.user!.uid).update({
-                                  //       //   "payment": false,
-                                  //       // });
-                                  //       getUserInfo(uid: value.user!.uid);
-                                  //     },
-                                  //       ).timeout(timeOut);
-                                  //     } on SocketException catch (_) {
-                                  //       snackBar(nointernet);
-                                  //     } on TimeoutException catch (_) {
-                                  //       snackBar(timeMsg);
-                                  //     } on FirebaseAuthException catch (e) {
-                                  //       if (e.code == 'user-not-found') {
-                                  //         snackBar(
-                                  //             'No student found with that email.');
-                                  //       } else if (e.code == 'wrong-password') {
-                                  //         snackBar(
-                                  //             'Wrong Password provided by Student.');
-                                  //       } else {
-                                  //         snackBar('${e.message}');
-                                  //       }
-                                  //     }
-                                  //     setState(() {
-                                  //       _isLoading = false;
-                                  //     });
-                                }
-                              },
-                              text: 'Login'),
-                        )
+                  )
                 ],
               ),
             ),

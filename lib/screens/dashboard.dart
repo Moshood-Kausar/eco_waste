@@ -1,9 +1,11 @@
+import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/learn.dart';
 import 'package:eco_waste/screens/settings.dart';
 import 'package:eco_waste/screens/trash_centres.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
