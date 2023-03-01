@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Empty field detected';
-                      } else if (value != _password!.text) {
+                      } else if (value != _password.text) {
                         return "Password doesn't match";
                       } else {
                         return null;
