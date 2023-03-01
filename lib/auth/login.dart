@@ -32,12 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Sign In'),
+            const Text('Sign In'),
             Form(
               key: _formKey,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 200,
                   ),
                   AppTextFormField(
@@ -93,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   setState(() {
+                                    Navigator.pushNamed(context, '/dashboard');
                                     _isLoading = true;
                                   });
                                   // try {
@@ -137,12 +138,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/signup');
                 },
-                child: Text('Does not have an account?Sign Up'))
+                child: const Text('Does not have an account?Sign Up'))
           ],
         ),
       )),

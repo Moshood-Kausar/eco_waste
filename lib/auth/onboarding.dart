@@ -1,10 +1,7 @@
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/images.dart';
-import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -40,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Text(
               texts[currentIndex],
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 20,
@@ -48,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Text(
               stexts[currentIndex],
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             ),
             const SizedBox(
               height: 70,
@@ -100,7 +97,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 45,
@@ -116,19 +113,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  child: Text(
+                  child: const Text(
                     'Get Started',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
-                      color: const Color(0xffffffff),
+                      color: Color(0xffffffff),
                       fontFamily: 'Mulish',
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             // Center(child: Text('This is an On boarding Screen')),

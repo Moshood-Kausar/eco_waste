@@ -30,7 +30,7 @@ class ButtonS extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
             child: Row(children: [
               //SvgPicture.asset(icon),
-              SizedBox(width: 6),
+              const SizedBox(width: 6),
               Text(
                 text,
                 style: const TextStyle(
@@ -73,10 +73,10 @@ class AppButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 16,
-              color: const Color(0xffffffff),
+              color: Color(0xffffffff),
               fontFamily: 'Mulish',
             ),
           ),
@@ -110,7 +110,7 @@ class ButtonSO extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(icon),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             Text(
               text,
               style: TextStyle(

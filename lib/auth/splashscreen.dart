@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:eco_waste/utils/colors.dart';
-import 'package:eco_waste/utils/images.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.primary,
-      body: Center(
+      body: const Center(
         child: Text(
           'ECOWASTE',
           style: TextStyle(

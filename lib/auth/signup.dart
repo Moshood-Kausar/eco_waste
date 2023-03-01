@@ -25,12 +25,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Sign In'),
+            const Text('Sign In'),
             Form(
               key: _formKey,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   AppTextFormField(
@@ -164,14 +164,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             //Spacer(),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/login');
                 },
-                child: Text('Al;ready have an account? Sign In'))
+                child: const Text('Al;ready have an account? Sign In'))
           ],
         ),
       )),
