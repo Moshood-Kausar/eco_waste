@@ -1,5 +1,8 @@
 import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controller/auth_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final AuthController _authController = Get.find();
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -18,16 +22,22 @@ class _HomePageState extends State<HomePage> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Hi Kausar!',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+            Obx(
+              () => Text(
+                'Hi ${_authController.firestoreUser.value == null ? '' : _authController.firestoreUser.value!.fullName}!',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
-            Text('Let\'s clean our community.'),
+            const Text('Let\'s clean our community.'),
           ],
         ),
         automaticallyImplyLeading: false,
         toolbarHeight: 70,
       ),
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 18.0, right: 18),
@@ -155,14 +165,154 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )),
+
+      body: Padding(
+        padding: const EdgeInsets.only(left: 18.0, right: 18),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text(
+              //   'Hi Kausar!',
+              //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+              // ),
+              // Text('Let\'s clean our community.'),
+              // SizedBox(height: 15),
+              Column(
+                children: [
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: AppColor.primary,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Request Pick Up',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Let\'s make the environment clean',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w200,
+                                color: Colors.white),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            onPressed: () {
+                              _authController.signOut();
+                            },
+                            child: Text('Turn On Location'),
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: AppColor.mintgreen,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Let us know about Waste Around you',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.primary),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Get in touch with us',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w200,
+                                color: AppColor.primary),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            onPressed: () {},
+                            child: Text(
+                              'Notify us',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            color: AppColor.primary,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Posts',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                  // Expanded(
+
+                  //   flex: 1,
+                  //   child: card()),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+
     );
   }
 }
+
 
 Widget posts({String? title, subtitle, pic}) {
   return ListView.builder(
       shrinkWrap: true,
       itemCount: 26,
+
+Widget card({String? title, subtitle, pic}) {
+  return ListView.builder(
+      shrinkWrap: true,
+      itemCount: 6,
+
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Padding(

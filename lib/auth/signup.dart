@@ -1,6 +1,11 @@
+import 'dart:developer';
+
+import 'package:eco_waste/controller/auth_controller.dart';
+import 'package:eco_waste/data/user.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -10,11 +15,15 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final AuthController _authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   int? selectedIndex;
-  TextEditingController? _fullname, _email, _phone, _password, _passwordd;
+  final TextEditingController _fullname = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _passwordd = TextEditingController();
   bool btnLoad = false, _hideshoww = true, _hideShow = true;
-  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Empty field detected';
-                      } else if (value != _password!.text) {
+                      } else if (value != _password.text) {
                         return "Password doesn't match";
                       } else {
                         return null;
@@ -137,29 +146,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   const SizedBox(height: 100),
-                  _isLoading
-                      ? const Center(
-                          child: SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2.2,
+                  Obx(
+                    () => _authController.isLoading.value
+                        ? const Center(
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.2,
+                              ),
                             ),
+                          )
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width - 20,
+                            height: 48.0,
+                            child: AppButton(
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    Map<String, String> user = {
+                                      "fullName": _fullname.text.trim(),
+                                      "email": _email.text.trim(),
+                                      "phone": _phone.text.trim(),
+                                    };
+                                    await _authController
+                                        .registerUserWithEmailAndPassword(
+                                      context,
+                                      user,
+                                      _password.text.trim(),
+                                    );
+                                  }
+                                },
+                                text: 'Sign Up'),
                           ),
-                        )
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width - 20,
-                          height: 48.0,
-                          child: AppButton(
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                }
-                              },
-                              text: 'Login'),
-                        )
+                  )
                 ],
               ),
             ),
