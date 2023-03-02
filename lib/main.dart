@@ -1,9 +1,14 @@
 import 'package:eco_waste/utils/approutes.dart';
 import 'package:eco_waste/utils/colors.dart';
+import 'package:eco_waste/utils/controller_binding.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Dogphy',
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(),
@@ -23,10 +28,14 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               backgroundColor: Colors.white,
               centerTitle: true,
-              titleTextStyle: TextStyle(color: AppColor.txtBlack, fontSize:18, fontWeight: FontWeight.w600),
+              titleTextStyle: TextStyle(
+                  color: AppColor.txtBlack,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
               iconTheme: IconThemeData(color: AppColor.txtBlack))
 //platform: TargetPlatform.iOS
           ),
+      initialBinding: ControllerBinding(),
       debugShowCheckedModeBanner: false,
       routes: AppRoutes().routes,
     );
