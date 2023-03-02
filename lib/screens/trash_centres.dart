@@ -12,7 +12,7 @@ class _TrashCentresState extends State<TrashCentres> {
   final TextEditingController _searchController = TextEditingController();
   String strValue = '';
 
- 
+  bool _startloading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,13 +63,8 @@ class _TrashCentresState extends State<TrashCentres> {
               SizedBox(height: 10),
               SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      Expanded(
-                       
-                        child: posts(),
-                      ),
-                    ],
+                  child: Expanded(
+                    child: posts(),
                   ),),
             ],
           ),
@@ -117,14 +112,10 @@ class _TrashCentresState extends State<TrashCentres> {
                         SizedBox(
                           width: 5,
                         ),
-                        Column(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                  '34, Oduduwa University Estate Ife-Ile beside my mum\'s house '),
-                            ),
-                          ],
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                              '34, Oduduwa University Estate Ife-Ile beside my mum\'s house '),
                         ),
                       ],
                     ),
