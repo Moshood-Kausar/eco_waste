@@ -1,20 +1,21 @@
-import 'dart:developer';
-
 import 'package:eco_waste/controller/auth_controller.dart';
-import 'package:eco_waste/data/user.dart';
-import 'package:eco_waste/utils/appbuttons.dart';
+import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+import '../utils/appbuttons.dart';
+
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _ProfileState extends State<Profile> {
   final AuthController _authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   int? selectedIndex;
@@ -24,17 +25,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _passwordd = TextEditingController();
   bool btnLoad = false, _hideshoww = true, _hideShow = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        appBar: AppBar(
+          title: Text('Profile'),
+          centerTitle: false,
+        ),
+        body: SafeArea(
+            child: Column(
           children: [
-            const Text('Sign In'),
+            Container(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: AppColor.primary,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  '${_authController.firestoreUser.value == null ? '' : _authController.firestoreUser.value!.fullName[0]}',
+                 
+                  style: TextStyle(
+                      color: AppColor.primary,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 56),
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            Text(
+              '${_authController.firestoreUser.value == null ? '' : _authController.firestoreUser.value!.fullName}',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            ),
+            Text(
+                '${_authController.firestoreUser.value == null ? '' : _authController.firestoreUser.value!.email}'),
+            Text(
+                '${_authController.firestoreUser.value == null ? '' : _authController.firestoreUser.value!.phone}'),
             Form(
               key: _formKey,
               child: Column(
@@ -94,58 +124,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  AppTextFormField(
-                    controller: _password,
-                    secure: _hideShow,
-                    text: 'Password',
-                    hintText: '••••••••',
-                    textInputAction: TextInputAction.next,
-                    icon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _hideShow = !_hideShow;
-                        });
-                      },
-                      icon:
-                          const Icon(Icons.remove_red_eye, color: Colors.grey),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Empty field detected';
-                      } else if (value.length < 6) {
-                        return '6 characters or more required';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 24),
-                  AppTextFormField(
-                    controller: _passwordd,
-                    secure: _hideshoww,
-                    text: 'Confirm Password',
-                    hintText: '••••••••',
-                    textInputAction: TextInputAction.done,
-                    icon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _hideshoww = !_hideshoww;
-                        });
-                      },
-                      icon:
-                          const Icon(Icons.remove_red_eye, color: Colors.grey),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Empty field detected';
-                      } else if (value != _password.text) {
-                        return "Password doesn't match";
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 100),
                   Obx(
                     () => _authController.isLoading.value
                         ? const Center(
@@ -168,32 +146,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       "email": _email.text.trim(),
                                       "phone": _phone.text.trim(),
                                     };
-                                    await _authController
-                                        .registerUserWithEmailAndPassword(
-                                      context,
-                                      user,
-                                      _password.text.trim(),
-                                    );
+                                    //update function
                                   }
                                 },
-                                text: 'Sign Up'),
+                                text: 'Update Profile'),
                           ),
                   )
                 ],
               ),
             ),
-            //Spacer(),
-            const SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/login');
-                },
-                child: const Text('Already have an account? Sign In'))
           ],
-        ),
-      )),
-    ));
+        )));
   }
 }
