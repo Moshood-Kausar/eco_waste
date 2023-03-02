@@ -18,16 +18,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Dogphy',
+      title: 'EcoWaste',
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(),
           primaryColor: AppColor.primary,
           backgroundColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
+            
+
+        toolbarHeight: 70,
               elevation: 0,
               backgroundColor: Colors.white,
-              centerTitle: true,
+              centerTitle: false,
               titleTextStyle: TextStyle(
                   color: AppColor.txtBlack,
                   fontSize: 18,

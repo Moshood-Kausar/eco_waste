@@ -5,6 +5,7 @@ import 'package:eco_waste/auth/splashscreen.dart';
 import 'package:eco_waste/screens/dashboard.dart';
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/learn.dart';
+import 'package:eco_waste/screens/profile.dart';
 import 'package:eco_waste/screens/settings.dart';
 import 'package:eco_waste/screens/trash_centres.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
       '/trashcentres': (ctx) => const TrashCentres(),
       '/learn': (ctx) => const Learn(),
       '/settings': (ctx) => const Settings(),
+      '/profile': (ctx) => const Profile(),
 
     //'/homepage':(ctx) => const HomePage(),
   };

@@ -18,7 +18,6 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,8 +33,6 @@ class _HomePageState extends State<HomePage> {
             const Text('Let\'s clean our community.'),
           ],
         ),
-        automaticallyImplyLeading: false,
-        toolbarHeight: 70,
       ),
       body: SafeArea(
         child: Padding(
@@ -46,12 +43,6 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text(
-                //   'Hi Kausar!',
-                //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-                // ),
-                // Text('Let\'s clean our community.'),
-                // SizedBox(height: 15),
                 Column(
                   children: [
                     SizedBox(
@@ -65,17 +56,17 @@ class _HomePageState extends State<HomePage> {
                           return Row(
                             children: [
                               card(
-                                  title: 'Request Pick Up',
-                                  subtitle: 'Let\'s make the environment clean',
-                                  buttontext: 'Turn On Location',
                                   color: AppColor.primary,
+                                  title: 'Let us know about Waste Around you',
+                                  subtitle: 'Get in touch with us',
+                                  buttontext: 'New Post',
                                   txtColor: Colors.white,
                                   buttoncolor: AppColor.primary),
                               card(
+                                  title: 'Request Pick Up',
+                                  subtitle: 'Let\'s make the environment clean',
+                                  buttontext: 'Turn On Location',
                                   color: AppColor.mintgreen,
-                                  title: 'Let us know about Waste Around you',
-                                  subtitle: 'Get in touch with us',
-                                  buttontext: 'Notify us',
                                   txtColor: AppColor.primary,
                                   buttoncolor: Colors.white),
                             ],
@@ -311,7 +302,6 @@ Widget posts({String? title, subtitle, pic}) {
   return ListView.builder(
       shrinkWrap: true,
       itemCount: 6,
-
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Padding(
@@ -320,7 +310,7 @@ Widget posts({String? title, subtitle, pic}) {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.08),
+                  color: Color(0xFF9E9E9E).withOpacity(0.08),
                   // boxShadow: [
                   //   BoxShadow(
                   //     color: const Color(0xffe5e5e5).withOpacity(0.25),
@@ -330,7 +320,7 @@ Widget posts({String? title, subtitle, pic}) {
                   // ],
                 ),
                 child: ListTile(
-                  leading: Image.asset('assets/images/boardone.png'),
+                  leading: Image.asset('assets/images/trassh.jpeg'),
                   title: Text(
                     'A Dump Site',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
