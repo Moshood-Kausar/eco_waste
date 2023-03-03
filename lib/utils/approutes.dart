@@ -1,7 +1,7 @@
-import 'package:eco_waste/auth/login.dart';
-import 'package:eco_waste/auth/onboarding.dart';
-import 'package:eco_waste/auth/signup.dart';
-import 'package:eco_waste/auth/splashscreen.dart';
+import 'package:eco_waste/screens/auth/login.dart';
+import 'package:eco_waste/screens/auth/onboarding.dart';
+import 'package:eco_waste/screens/auth/signup.dart';
+import 'package:eco_waste/screens/auth/splashscreen.dart';
 import 'package:eco_waste/screens/dashboard.dart';
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/learn.dart';
@@ -15,14 +15,14 @@ class AppRoutes {
       <String, WidgetBuilder>{
     '/': (ctx) => const SplashScreen(),
     '/onboarding': (ctx) => const OnboardingScreen(),
-     '/signup': (ctx) => const SignUpScreen(),
-      '/login': (ctx) => const LoginScreen(),
-      '/dashboard': (ctx) => const DashBoard(),
-      '/homepage': (ctx) => const HomePage(),
-      '/trashcentres': (ctx) => const TrashCentres(),
-      '/learn': (ctx) => const Learn(),
-      '/settings': (ctx) => const Settings(),
-      '/profile': (ctx) => const Profile(),
+    '/signup': (ctx) => const SignUpScreen(),
+    '/login': (ctx) => const LoginScreen(),
+    '/dashboard': (ctx) => const DashBoard(),
+    '/homepage': (ctx) => const HomePage(),
+    '/trashcentres': (ctx) => const TrashCentres(),
+    '/learn': (ctx) => const Learn(),
+    '/settings': (ctx) => const Settings(),
+    '/profile': (ctx) => const Profile(),
 
     //'/homepage':(ctx) => const HomePage(),
   };

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eco_waste/auth/login.dart';
+import 'package:eco_waste/screens/auth/login.dart';
 import 'package:eco_waste/data/user.dart';
 import 'package:eco_waste/screens/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
