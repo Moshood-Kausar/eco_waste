@@ -3,8 +3,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class HomeCard extends StatelessWidget {
-  const HomeCard({
+  var ontap;
+
+   HomeCard({
     super.key,
+    required this.ontap,
     required this.title,
     required this.buttoncolor,
     required this.buttontext,
@@ -56,7 +59,7 @@ class HomeCard extends StatelessWidget {
                 MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: () {},
+                  onPressed: ontap,
                   color: txtColor,
                   child: Text(
                     '$buttontext',

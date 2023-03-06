@@ -18,6 +18,7 @@ class PostListItem extends StatelessWidget {
               color: const Color(0xFF9E9E9E).withOpacity(0.08),
             ),
             child: ListTile(
+              isThreeLine: true,
               leading: Image.asset('assets/images/trassh.jpeg'),
               title: Text(
                 'A Dump Site',
@@ -35,6 +36,7 @@ class PostListItem extends StatelessWidget {
                   Text('MayFair Junction')
                 ],
               ),
+              trailing: Text('20-03-2023'),
             ),
           ),
         ],

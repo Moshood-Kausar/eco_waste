@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePage> {
                         return Row(
                           children: [
                             HomeCard(
+                              ontap: () {},
                               color: AppColor.primary,
                               title: 'Let us know about Waste Around you',
                               subtitle: 'Get in touch with us',
@@ -66,6 +67,9 @@ class _HomePageState extends State<HomePage> {
                               pic: '',
                             ),
                             HomeCard(
+                              ontap: () {
+                                Navigator.pushNamed(context, '/location');
+                              },
                               title: 'Request Pick Up',
                               subtitle: 'Let\'s make the environment clean',
                               buttontext: 'Turn On Location',

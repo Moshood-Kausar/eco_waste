@@ -65,6 +65,7 @@ class _SettingsState extends State<Settings> {
                 height: 10,
               ),
               ListTile(
+                onTap:(){ Navigator.pushNamed(context, '/testmap');},
                 leading: CircleAvatar(
                     radius: 16,
                     backgroundColor: AppColor.mintgreen,
