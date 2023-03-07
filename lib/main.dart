@@ -25,9 +25,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
-            
-
-        toolbarHeight: 70,
+              toolbarHeight: 70,
               elevation: 0,
               backgroundColor: Colors.white,
               centerTitle: false,

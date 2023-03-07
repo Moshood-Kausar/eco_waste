@@ -17,26 +17,54 @@ class PostListItem extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               color: const Color(0xFF9E9E9E).withOpacity(0.08),
             ),
-            child: ListTile(
-              isThreeLine: true,
-              leading: Image.asset('assets/images/trassh.jpeg'),
-              title: Text(
-                'A Dump Site',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              subtitle: Row(
-                children: [
-                  Icon(
-                    Icons.location_on,
-                    color: AppColor.primary,
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/trassh.jpeg',
+                  width: 100,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'A Dump Site',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                          ),
+                          Spacer(),
+                          Text(
+                            '20-03-2023',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: AppColor.primary,
+                            size: 16,
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          const Text('MayFair Junction')
+                        ],
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text('MayFair Junction')
-                ],
-              ),
-              trailing: Text('20-03-2023'),
+                )
+              ],
             ),
           ),
         ],
