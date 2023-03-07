@@ -25,9 +25,8 @@ class AppRoutes {
     '/learn': (ctx) => const Learn(),
     '/settings': (ctx) => const Settings(),
     '/profile': (ctx) => const Profile(),
-        '/testmap': (ctx) => const TestMap(),
-         '/location': (ctx) => const Location(),
-
+    '/testmap': (ctx) => const TestMap(),
+    '/location': (ctx) => const Location(),
 
     //'/homepage':(ctx) => const HomePage(),
   };
