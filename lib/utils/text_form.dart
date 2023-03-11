@@ -13,6 +13,7 @@ class AppTextFormField extends StatelessWidget {
   final IconData? suffixIcon;
   final String? hintText, text, initialValue;
   final bool enable;
+  final int? maxLength;
 
   const AppTextFormField(
       {Key? key,
@@ -21,6 +22,7 @@ class AppTextFormField extends StatelessWidget {
       required this.validator,
       this.enable = true,
       this.icon,
+      this.maxLength,
       this.keyboardType,
       this.secure,
       this.hintText,
@@ -47,6 +49,7 @@ class AppTextFormField extends StatelessWidget {
           ),
         ),
         TextFormField(
+          maxLength: maxLength,
           enabled: enable,
           cursorColor: const Color(0xff525252),
           keyboardType: keyboardType,

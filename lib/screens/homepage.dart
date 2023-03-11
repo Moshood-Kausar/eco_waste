@@ -57,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                         return Row(
                           children: [
                             HomeCard(
-                              ontap: () {},
+                              ontap: () {
+                                Navigator.pushNamed(context, '/postscreen');
+                              },
                               color: AppColor.primary,
                               title: 'Let us know about Waste Around you',
                               subtitle: 'Get in touch with us',
