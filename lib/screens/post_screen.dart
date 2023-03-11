@@ -1,11 +1,7 @@
-import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -17,14 +13,12 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> {
-  final AuthController _authController = Get.find();
+  //final AuthController _authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   int? selectedIndex;
   final TextEditingController _address = TextEditingController();
-  final TextEditingController _location = TextEditingController();
-  final TextEditingController _phone = TextEditingController();
 
-  bool btnLoad = false, _hideshoww = true, _hideShow = true;
+  bool btnLoad = false;
   String? _currentAddress;
   Position? _currentPosition;
   Future<bool> _handleLocationPermission() async {
@@ -101,106 +95,132 @@ class _PostScreenState extends State<PostScreen> {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.add_a_photo_outlined,
-                  size: 60,
-                  color: AppColor.primary,
-                ),
-              ),
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  AppTextFormField(
-                    controller: _address,
-                    text: 'Nearest Address',
-                    hintText: 'Oduduwa City',
-                    icon: const Icon(Icons.location_city_sharp,
-                        color: Colors.grey),
-                    textInputAction: TextInputAction.next,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Empty field detected';
-                      } else if (value.length < 2) {
-                        return 'Nearest Address cannot be less than 3 characters';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.only(top: 30),
-                        child: Container(
-                          color: AppColor.primary,
-                          height: 40,
-                          width: 40,
-                          child: Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: Text(
-                              'Tap to \n Locate',
-                              style: TextStyle(color: Colors.white),
-                              textAlign: TextAlign.center,
-                            ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/images/trash1.jpg',
+                          ),
+                          colorFilter: ColorFilter.mode(
+                            Colors.white.withOpacity(0.2),
+                            BlendMode.modulate,
                           ),
                         ),
-                      )),
-                      // Expanded(
-                      //   flex: 0,
-                      //   child: ElevatedButton(
-                      //     style: ButtonStyle(backgroundColor: AppColor.primary),
-                      //     onPressed: _getCurrentPosition,
-                      //     child: const Text('Tap to Locate'),
-                      //   ),
-                      // ),
-                      SizedBox(
-                        width: 5,
                       ),
-                      Expanded(
-                        flex: 4,
-                        child: AppTextFormField(
-                          controller: TextEditingController(
-                              text: '${_currentAddress ?? ""}'),
-                          //enable: false,
-                          // initialValue: '${_currentAddress ?? ""}',
-                          text: 'Location on maps',
-                          hintText: 'your_mail@email.com',
-                          icon: const Icon(Icons.location_on_outlined,
-                              color: Colors.grey),
-                          textInputAction: TextInputAction.next,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Empty field detected';
-                            } else if (value.length < 2) {
-                              return 'Nearest Address cannot be less than 3 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.camera_enhance,
+                        color: AppColor.primary,
+                        size: 40,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  const SizedBox(height: 100),
-                                 ],
+                    ),
+                    
+                  ],
+                ),
               ),
-            ),
-          ],
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
+                     Text('Upload Picture of Waste'),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    AppTextFormField(
+                      maxLength: 20,
+                      controller: _address,
+                      text: 'Nearest Address',
+                      hintText: 'Oduduwa City',
+                      icon: const Icon(Icons.location_city_sharp,
+                          color: Colors.grey),
+                      textInputAction: TextInputAction.next,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Empty field detected';
+                        } else if (value.length < 2) {
+                          return 'Nearest Address cannot be less than 3 characters';
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                            child: Padding(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: GestureDetector(
+                            onTap: _getCurrentPosition,
+                            child: Container(
+                              color: AppColor.primary,
+                              height: 40,
+                              width: 40,
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Text(
+                                  'Tap to \n Locate',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: AppTextFormField(
+                            controller: TextEditingController(
+                                text: '${_currentAddress ?? ""}'),
+                            enable: false,
+                            text: 'Location on maps',
+                            hintText: 'map location address',
+                            icon: const Icon(Icons.location_on_outlined,
+                                color: Colors.grey),
+                            textInputAction: TextInputAction.next,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Empty field detected';
+                              } else if (value.length < 2) {
+                                return 'Nearest Address cannot be less than 3 characters';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    const SizedBox(height: 100),
+                    AppButton(onPressed: () {}, text: 'Make a new Post'),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       )),
     );
