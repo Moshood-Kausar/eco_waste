@@ -46,42 +46,27 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(
                 children: [
-                  SizedBox(
-                    width: width,
-                    height: 200,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 1,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          children: [
-                            HomeCard(
-                              ontap: () {},
-                              color: AppColor.primary,
-                              title: 'Let us know about Waste Around you',
-                              subtitle: 'Get in touch with us',
-                              buttontext: 'New Post',
-                              txtColor: Colors.white,
-                              buttoncolor: AppColor.primary,
-                              pic: '',
-                            ),
-                            HomeCard(
-                              ontap: () {
-                                Navigator.pushNamed(context, '/location');
-                              },
-                              title: 'Request Pick Up',
-                              subtitle: 'Let\'s make the environment clean',
-                              buttontext: 'Turn On Location',
-                              color: AppColor.mintgreen,
-                              txtColor: AppColor.primary,
-                              buttoncolor: Colors.white,
-                              pic: '',
-                            ),
-                          ],
-                        );
-                      },
-                    ),
+                  HomeCard(
+                    ontap: () {},
+                    color: AppColor.primary,
+                    title: 'Waste Around you',
+                    subtitle: 'Get in touch with us',
+                    buttontext: 'New Post',
+                    txtColor: Colors.white,
+                    buttoncolor: AppColor.primary,
+                    pic: '',
+                  ),
+                  HomeCard(
+                    ontap: () {
+                      Navigator.pushNamed(context, '/location');
+                    },
+                    title: 'Request Pick Up',
+                    subtitle: 'Let\'s make the environment clean',
+                    buttontext: 'Turn On Location',
+                    color: AppColor.mintgreen,
+                    txtColor: AppColor.primary,
+                    buttoncolor: Colors.white,
+                    pic: '',
                   ),
                   const SizedBox(
                     height: 30,
