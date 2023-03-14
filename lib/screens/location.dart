@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-
 class Location extends StatefulWidget {
   const Location({super.key});
 
@@ -11,10 +10,9 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
- 
-   String? _currentAddress;
+  String? _currentAddress;
   Position? _currentPosition;
-    Future<bool> _handleLocationPermission() async {
+  Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -63,13 +61,12 @@ class _LocationState extends State<Location> {
       Placemark place = placemarks[0];
       setState(() {
         _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.country}';
       });
     }).catchError((e) {
       debugPrint(e);
     });
   }
- 
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +89,9 @@ class _LocationState extends State<Location> {
                 child: const Text("Get Current Location"),
               )
             ],
-          
           ),
         ),
       ),
     );
   }
-
 }

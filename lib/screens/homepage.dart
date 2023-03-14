@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/widget/home_card.dart';
 import 'package:eco_waste/utils/widget/post_item.dart';
@@ -101,15 +104,47 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return const PostListItem();
-                  },
-                ),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('dumps')
+                    .orderBy("created_at", descending: true)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const Text('ConnectionState.waiting');
+                    case ConnectionState.none:
+                      return const Text('ConnectionState.none');
+                    case ConnectionState.active:
+                      return Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          // scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            return PostListItem(
+                              imageUrl: snapshot.data!.docs[index]['imageUrl']
+                                  .toString(),
+                              landmark: snapshot.data!.docs[index]['landmark']
+                                  .toString(),
+                              location: snapshot.data!.docs[index]['location']
+                                  .toString(),
+                              date: snapshot.data!.docs[index]['created_at']
+                                  .toString(),
+                            );
+                          },
+                        ),
+                      );
+                    case ConnectionState.done:
+                      return const Text('ConnectionState.done');
+                  }
+                },
               ),
             ],
           ),

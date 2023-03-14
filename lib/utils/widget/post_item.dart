@@ -1,11 +1,17 @@
 import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PostListItem extends StatelessWidget {
   const PostListItem({
+    required this.imageUrl,
+    required this.landmark,
+    required this.location,
+    required this.date,
     super.key,
   });
 
+  final String imageUrl, landmark, location, date;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,9 +25,13 @@ class PostListItem extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset(
-                  'assets/images/trassh.jpeg',
+                SizedBox(
                   width: 100,
+                  height: 60,
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
                 const SizedBox(
                   width: 8,
@@ -30,23 +40,11 @@ class PostListItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'A Dump Site',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                          Text(
-                            '20-03-2023',
-                            style: TextStyle(fontSize: 10),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                        ],
+                      Text(
+                        landmark,
+                        maxLines: 1,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
                       ),
                       Row(
                         children: [
@@ -58,8 +56,19 @@ class PostListItem extends StatelessWidget {
                           const SizedBox(
                             width: 3,
                           ),
-                          const Text('MayFair Junction')
+                          Text(
+                            location,
+                            maxLines: 1,
+                          )
                         ],
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        DateFormat('yyyy-MM-dd – kk:mm')
+                            .format(DateTime.parse(date)),
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   ),

@@ -1,9 +1,16 @@
+import 'dart:io';
+
+import 'package:eco_waste/controller/auth_controller.dart';
+import 'package:eco_waste/data/dump_model.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+
+import '../controller/home_controller.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key});
@@ -13,7 +20,8 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> {
-  //final AuthController _authController = Get.find();
+  final HomeController _homeConntroller = Get.find();
+  final AuthController _authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   int? selectedIndex;
   final TextEditingController _address = TextEditingController();
@@ -107,29 +115,38 @@ class _PostScreenState extends State<PostScreen> {
                     Container(
                       height: 150,
                       width: 200,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            'assets/images/trash1.jpg',
-                          ),
-                          colorFilter: ColorFilter.mode(
-                            Colors.white.withOpacity(0.2),
-                            BlendMode.modulate,
-                          ),
-                        ),
+                        // image: DecorationImage(
+                        //   fit: BoxFit.cover,
+                        //   colorFilter: ColorFilter.mode(
+                        //     Colors.white.withOpacity(0.2),
+                        //     BlendMode.modulate,
+                        //   ),
+                        // ),
+                      ),
+                      child: Obx(
+                        () => _homeConntroller.filePath.toString().isEmpty
+                            ? Image.asset(
+                                'assets/images/trash1.jpg',
+                              )
+                            : Image.file(
+                                File(_homeConntroller.filePath.toString()),
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // _homeConntroller.selectFile();
+                        _homeConntroller.captureImage();
+                      },
                       icon: Icon(
                         Icons.camera_enhance,
                         color: AppColor.primary,
                         size: 40,
                       ),
                     ),
-                    
                   ],
                 ),
               ),
@@ -140,7 +157,7 @@ class _PostScreenState extends State<PostScreen> {
                     const SizedBox(
                       height: 5,
                     ),
-                     Text('Upload Picture of Waste'),
+                    const Text('Upload Picture of Waste'),
                     const SizedBox(
                       height: 50,
                     ),
@@ -174,8 +191,8 @@ class _PostScreenState extends State<PostScreen> {
                               color: AppColor.primary,
                               height: 40,
                               width: 40,
-                              child: Padding(
-                                padding: const EdgeInsets.all(1.0),
+                              child: const Padding(
+                                padding: EdgeInsets.all(1.0),
                                 child: Text(
                                   'Tap to \n Locate',
                                   style: TextStyle(
@@ -186,14 +203,15 @@ class _PostScreenState extends State<PostScreen> {
                             ),
                           ),
                         )),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Expanded(
                           flex: 4,
                           child: AppTextFormField(
                             controller: TextEditingController(
-                                text: '${_currentAddress ?? ""}'),
+                              text: _currentAddress ?? "",
+                            ),
                             enable: false,
                             text: 'Location on maps',
                             hintText: 'map location address',
@@ -215,7 +233,33 @@ class _PostScreenState extends State<PostScreen> {
                     ),
                     const SizedBox(height: 24),
                     const SizedBox(height: 100),
-                    AppButton(onPressed: () {}, text: 'Make a new Post'),
+                    Obx(
+                      () => _homeConntroller.isLoading.value
+                          ? const Center(
+                              child: SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2.2,
+                                ),
+                              ),
+                            )
+                          : AppButton(
+                              onPressed: () async {
+                                DumpPost post = DumpPost(
+                                  userId:
+                                      _authController.firebaseUser.value!.uid,
+                                  imageUrl: '',
+                                  landmark: _address.text.trim().toString(),
+                                  location: _currentAddress.toString(),
+                                  coordinate:
+                                      '${_currentPosition!.latitude} ${_currentPosition!.longitude} ',
+                                  createdAt: DateTime.now().toString(),
+                                );
+                                await _homeConntroller.uploadImage(post);
+                              },
+                              text: 'Make a new Post'),
+                    ),
                   ],
                 ),
               ),

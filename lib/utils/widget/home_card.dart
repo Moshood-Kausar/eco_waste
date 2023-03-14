@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class HomeCard extends StatelessWidget {
-  var ontap;
-
-   HomeCard({
+  const HomeCard({
     super.key,
     required this.ontap,
     required this.title,
@@ -18,14 +14,14 @@ class HomeCard extends StatelessWidget {
   });
   final String? title, subtitle, buttontext, pic;
   final Color? txtColor, buttoncolor, color;
+  final ontap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          height: 200,
-          width: MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(8),
