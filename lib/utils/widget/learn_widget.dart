@@ -38,8 +38,8 @@ class AwarenessItems extends StatelessWidget {
   }
 }
 
-class LearnCard extends StatelessWidget {
-  const LearnCard({
+class BlogCard extends StatelessWidget {
+  const BlogCard({
     super.key,
     this.buttoncolor,
     this.buttontext,

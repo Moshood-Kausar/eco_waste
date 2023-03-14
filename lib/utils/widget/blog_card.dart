@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WasteNewsCard extends StatefulWidget {
+class BlogCard extends StatefulWidget {
   final dynamic data;
-  WasteNewsCard({Key? key, this.data}) : super(key: key);
+  BlogCard({Key? key, this.data}) : super(key: key);
 
   @override
-  State<WasteNewsCard> createState() => _WasteNewsCardState();
+  State<BlogCard> createState() => _BlogCardState();
 }
 
-class _WasteNewsCardState extends State<WasteNewsCard> {
+class _BlogCardState extends State<BlogCard> {
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? _webViewController;
   double progress = 0;
