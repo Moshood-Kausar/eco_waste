@@ -1,6 +1,6 @@
 import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/screens/homepage.dart';
-import 'package:eco_waste/screens/learn.dart';
+import 'package:eco_waste/screens/blog.dart';
 import 'package:eco_waste/screens/settings.dart';
 import 'package:eco_waste/screens/trash_centres.dart';
 import 'package:eco_waste/utils/colors.dart';
@@ -19,7 +19,7 @@ class _DashBoardState extends State<DashBoard> {
   List<Widget> screens = [
     const HomePage(),
     const TrashCentres(),
-    const Learn(),
+    const Blog(),
     const Settings()
   ];
 
@@ -46,7 +46,7 @@ class _DashBoardState extends State<DashBoard> {
           BottomNavigationBarItem(
               icon: Icon(Icons.location_on), label: 'Trash Centres'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_outlined), label: 'Learn'),
+              icon: Icon(Icons.menu_book_outlined), label: 'Blog'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: 'Settings'),
         ],

@@ -3,28 +3,28 @@ import 'dart:io';
 import 'package:eco_waste/services/api.dart';
 import 'package:eco_waste/services/models/waste_model.dart';
 import 'package:eco_waste/utils/colors.dart';
-import 'package:eco_waste/utils/widget/learn_widget.dart';
-import 'package:eco_waste/utils/widget/waste_news.dart';
+import 'package:eco_waste/utils/widget/shimmer.dart';
+
+import 'package:eco_waste/utils/widget/blog_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:shimmer/shimmer.dart';
 
-class Learn extends StatefulWidget {
-  const Learn({super.key});
+class Blog extends StatefulWidget {
+  const Blog({super.key});
 
   @override
-  State<Learn> createState() => _LearnState();
+  State<Blog> createState() => _BlogState();
 }
 
-class _LearnState extends State<Learn> {
-  
- 
-
+class _BlogState extends State<Blog> {
   Future<WasteModel>? _wasteNews;
-   @override
+  @override
   void initState() {
     super.initState();
     _wasteNews = ApiCall().wasteApi();
   }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -34,14 +34,14 @@ class _LearnState extends State<Learn> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Text(
-              'Learn',
+              'Blog',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
             ),
             Text('Why disposing of trash is essential'),
           ],
         ),
       ),
-     body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: FutureBuilder<WasteModel>(
           future: _wasteNews,
           builder: (context, snapshot) {
@@ -49,9 +49,10 @@ class _LearnState extends State<Learn> {
               case ConnectionState.none:
                 return const Center();
               case ConnectionState.waiting:
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return CustomShimmer();
+              // return const Center(
+              //   child: CircularProgressIndicator(),
+              // );
               case ConnectionState.active:
                 return const Center();
               case ConnectionState.done:
@@ -59,8 +60,8 @@ class _LearnState extends State<Learn> {
                   return const Center(
                     child: Text(
                       'Unable to get Waste News. Kindly Refresh',
-                      style:
-                          TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.w500),
                     ),
                   );
                 } else if (snapshot.hasData) {
@@ -70,7 +71,7 @@ class _LearnState extends State<Learn> {
                       child: Text('Oops! No article found 🥴'),
                     );
                   } else {
-                    return WasteNewsCard(data: snapshot.data!);
+                    return BlogCard(data: snapshot.data!);
                   }
                 } else {
                   return const Text('No Internet Connection');
@@ -89,7 +90,7 @@ class _LearnState extends State<Learn> {
   //         crossAxisAlignment: CrossAxisAlignment.start,
   //         children: const [
   //           Text(
-  //             'Learn',
+  //             'Blog',
   //             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
   //           ),
   //           Text('Why disposing of trash is essential'),
@@ -113,14 +114,14 @@ class _LearnState extends State<Learn> {
   //               itemBuilder: (context, index) {
   //                 return Row(
   //                   children: [
-  //                     LearnCard(
+  //                     BlogCard(
   //                         title: 'Waste Sorting tips',
   //                         subtitle: 'Damilola',
   //                         buttontext: 'Turn On Location',
   //                         color: AppColor.primary,
   //                         txtColor: Colors.white,
   //                         buttoncolor: AppColor.primary),
-  //                     LearnCard(
+  //                     BlogCard(
   //                         color: AppColor.mintgreen,
   //                         title: 'Environmental tips',
   //                         subtitle: 'Damilola',
