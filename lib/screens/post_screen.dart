@@ -20,70 +20,13 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> {
-  final HomeController _homeConntroller = Get.find();
+  final HomeController _homeController = Get.find();
   final AuthController _authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   int? selectedIndex;
   final TextEditingController _address = TextEditingController();
 
   bool btnLoad = false;
-  String? _currentAddress;
-  Position? _currentPosition;
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
-      return false;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
-        return false;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
-      return false;
-    }
-    return true;
-  }
-
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
-
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
-
-  Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
-        .then((List<Placemark> placemarks) {
-      Placemark place = placemarks[0];
-      setState(() {
-        _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-      });
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,169 +47,214 @@ class _PostScreenState extends State<PostScreen> {
           child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
+          child: Obx(
+            () => Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(100)),
+                    child: SizedBox(
                       height: 150,
-                      width: 200,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        // image: DecorationImage(
-                        //   fit: BoxFit.cover,
-                        //   colorFilter: ColorFilter.mode(
-                        //     Colors.white.withOpacity(0.2),
-                        //     BlendMode.modulate,
-                        //   ),
-                        // ),
-                      ),
-                      child: Obx(
-                        () => _homeConntroller.filePath.toString().isEmpty
-                            ? Image.asset(
-                                'assets/images/trash1.jpg',
-                              )
-                            : Image.file(
-                                File(_homeConntroller.filePath.toString()),
-                                fit: BoxFit.cover,
-                              ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        // _homeConntroller.selectFile();
-                        _homeConntroller.captureImage();
-                      },
-                      icon: Icon(
-                        Icons.camera_enhance,
-                        color: AppColor.primary,
-                        size: 40,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const Text('Upload Picture of Waste'),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    AppTextFormField(
-                      maxLength: 20,
-                      controller: _address,
-                      text: 'Nearest Address',
-                      hintText: 'Oduduwa City',
-                      icon: const Icon(Icons.location_city_sharp,
-                          color: Colors.grey),
-                      textInputAction: TextInputAction.next,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Empty field detected';
-                        } else if (value.length < 2) {
-                          return 'Nearest Address cannot be less than 3 characters';
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: GestureDetector(
-                            onTap: _getCurrentPosition,
-                            child: Container(
-                              color: AppColor.primary,
-                              height: 40,
-                              width: 40,
-                              child: const Padding(
-                                padding: EdgeInsets.all(1.0),
-                                child: Text(
-                                  'Tap to \n Locate',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: AppTextFormField(
-                            controller: TextEditingController(
-                              text: _currentAddress ?? "",
-                            ),
-                            enable: false,
-                            text: 'Location on maps',
-                            hintText: 'map location address',
-                            icon: const Icon(Icons.location_on_outlined,
-                                color: Colors.grey),
-                            textInputAction: TextInputAction.next,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Empty field detected';
-                              } else if (value.length < 2) {
-                                return 'Nearest Address cannot be less than 3 characters';
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 24),
-                    const SizedBox(height: 100),
-                    Obx(
-                      () => _homeConntroller.isLoading.value
-                          ? const Center(
-                              child: SizedBox(
-                                height: 30,
-                                width: 30,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2.2,
-                                ),
-                              ),
+                      width: 150,
+                      child: _homeController.filePath.toString().isEmpty
+                          ? Image.asset(
+                              'assets/images/trash1.jpg',
+                              fit: BoxFit.cover,
                             )
-                          : AppButton(
-                              onPressed: () async {
-                                DumpPost post = DumpPost(
-                                  userId:
-                                      _authController.firebaseUser.value!.uid,
-                                  imageUrl: '',
-                                  landmark: _address.text.trim().toString(),
-                                  location: _currentAddress.toString(),
-                                  coordinate:
-                                      '${_currentPosition!.latitude} ${_currentPosition!.longitude} ',
-                                  createdAt: DateTime.now().toString(),
-                                );
-                                await _homeConntroller.uploadImage(post);
-                              },
-                              text: 'Make a new Post'),
+                          : Image.file(
+                              File(_homeController.filePath.toString()),
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ImageSelector(
+                      action: () => _homeController.captureImage(),
+                      icon: Icons.camera_alt,
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    ImageSelector(
+                      action: () => _homeController.selectFile(),
+                      icon: Icons.image,
                     ),
                   ],
                 ),
-              ),
-            ],
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text('Upload Picture of Waste'),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      AppTextFormField(
+                        maxLength: 20,
+                        controller: _address,
+                        text: 'Nearest Address',
+                        hintText: 'Oduduwa City',
+                        icon: const Icon(Icons.location_city_sharp,
+                            color: Colors.grey),
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Empty field detected';
+                          } else if (value.length < 2) {
+                            return 'Nearest Address cannot be less than 3 characters';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  btnLoad = true;
+                                });
+                                _homeController.getCurrentPosition(context);
+                                setState(() {
+                                  btnLoad = false;
+                                });
+                              },
+                              child: Container(
+                                color: AppColor.primary,
+                                height: 40,
+                                width: 40,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(1.0),
+                                  child: !btnLoad
+                                      ? const Text(
+                                          'Tap to \n Locate',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12),
+                                          textAlign: TextAlign.center,
+                                        )
+                                      : const Center(
+                                          child: SizedBox(
+                                            height: 30,
+                                            width: 30,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.white,
+                                              strokeWidth: 2.2,
+                                            ),
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          )),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: AppTextFormField(
+                              controller: TextEditingController(
+                                  text: _homeController.currentAddress
+                                      .toString()),
+                              enable: false,
+                              text: 'Location on maps',
+                              hintText: 'map location address',
+                              icon: const Icon(Icons.location_on_outlined,
+                                  color: Colors.grey),
+                              textInputAction: TextInputAction.next,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Empty field detected';
+                                } else if (value.length < 2) {
+                                  return 'Nearest Address cannot be less than 3 characters';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      Obx(
+                        () => _homeController.isLoading.value
+                            ? const Center(
+                                child: SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.2,
+                                  ),
+                                ),
+                              )
+                            : AppButton(
+                                onPressed: () async {
+                                  DumpPost post = DumpPost(
+                                    userId:
+                                        _authController.firebaseUser.value!.uid,
+                                    imageUrl: '',
+                                    landmark: _address.text.trim().toString(),
+                                    location: _homeController.currentAddress
+                                        .toString(),
+                                    coordinate:
+                                        _homeController.coordinate.toString(),
+                                    createdAt: DateTime.now().toString(),
+                                  );
+                                  await _homeController.uploadImage(post);
+                                },
+                                text: 'Make a new Post'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       )),
+    );
+  }
+}
+
+class ImageSelector extends StatelessWidget {
+  const ImageSelector({
+    super.key,
+    required this.action,
+    required this.icon,
+  });
+
+  final Function()? action;
+  final IconData icon;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: action,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: const BorderRadius.all(Radius.circular(100))),
+        child: Icon(
+          icon,
+          color: AppColor.primary,
+          size: 24,
+        ),
+      ),
     );
   }
 }
