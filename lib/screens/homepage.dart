@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 18.0, right: 18),
+          padding: const EdgeInsets.only(left: 16.0, right: 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -63,12 +63,12 @@ class _HomePageState extends State<HomePage> {
                               ontap: () {
                                 Navigator.pushNamed(context, '/postscreen');
                               },
-                              color: AppColor.primary,
+                              color: AppColor.maingrey,
                               title: 'Let us know about Waste Around you',
                               subtitle: 'Get in touch with us',
                               buttontext: 'New Post',
-                              txtColor: Colors.white,
-                              buttoncolor: AppColor.primary,
+                              txtColor: Colors.black,
+                              buttoncolor: Colors.white,
                               pic: '',
                             ),
                             HomeCard(
@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage> {
                               title: 'Request Pick Up',
                               subtitle: 'Let\'s make the environment clean',
                               buttontext: 'Turn On Location',
-                              color: AppColor.mintgreen,
-                              txtColor: AppColor.primary,
+                              color: AppColor.maingrey,
+                              txtColor: Colors.black,
                               buttoncolor: Colors.white,
                               pic: '',
                             ),

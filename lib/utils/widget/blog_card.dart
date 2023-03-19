@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -60,7 +61,7 @@ class _BlogCardState extends State<BlogCard> {
         itemCount: widget.data.articles!.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -106,17 +107,19 @@ class _BlogCardState extends State<BlogCard> {
             
             },
             child: Container(
-              margin: const EdgeInsets.only(top: 14),
+              margin:  EdgeInsets.only(top: 16),
               decoration: BoxDecoration(
+                border: Border.all(color:AppColor.maingrey, width: 3.0),
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    blurRadius: 12.0,
-                    offset: const Offset(4.0, 5.0),
-                  ),
-                ],
+                //border:Border(Border))
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.grey.withOpacity(0.5),
+                //     blurRadius: 12.0,
+                //     offset: const Offset(4.0, 5.0),
+                //   ),
+                // ],
                 // border: Border.all(color: Colors.red),
               ),
               child: Column(
