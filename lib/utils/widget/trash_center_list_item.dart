@@ -1,60 +1,88 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-class TrashCenterItem extends StatelessWidget {
-  const TrashCenterItem({
-    super.key,
-  });
+class TrashCentres extends StatefulWidget {
+  final dynamic data;
+  TrashCentres({Key? key, this.data}) : super(key: key);
 
   @override
+  State<TrashCentres> createState() => _TrashCentresState();
+}
+
+class _TrashCentresState extends State<TrashCentres> {
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0, bottom: 8.0),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.grey.withOpacity(0.08),
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: const Color(0xffe5e5e5).withOpacity(0.25),
-              //     blurRadius: 14,
-              //     offset: const Offset(0, 11),
-              //   )
-              // ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            SizedBox(
+              height: 12,
             ),
-            child: ListTile(
-              isThreeLine: true,
-              // leading: Image.asset('assets/images/boardone.png'),
-              title: Text(
-                'MayFair Waste Management',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            Text(
+              'Nearby Trash Centres',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+            ),
+            SizedBox(
+              height: 3,
+            ),
+            AutoSizeText(
+              'Locate the nearest trash sorting & recycle depot',
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
-              subtitle: Row(
+            ),
+            SizedBox(
+              height: 16,
+            )
+          ],
+        ),
+        automaticallyImplyLeading: false,
+        toolbarHeight: 90,
+      ),
+      body: 
+      ListView.builder(
+          itemCount: widget.data.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Column(
                 children: [
-                  Icon(
-                    Icons.location_on,
-                    color: AppColor.primary,
+                  Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage('${widget.data[index].icon}'))),
                   ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                        '34, Oduduwa University Estate Ife-Ile beside my mum\'s house '),
+                  ListTile(
+                    minVerticalPadding: 10,
+                    title: Text(
+                      '${widget.data[index].name}',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Icon(
+                            Icons.location_on,
+                            color: AppColor.grey,
+                            size: 16,
+                          ),
+                        ),
+                        Expanded(child: Text('${widget.data[index].vicinity}'))
+                      ],
+                    ),
                   ),
                 ],
               ),
-              trailing: Icon(
-                Icons.message,
-                color: AppColor.primary,
-              ),
-            ),
-          ),
-        ],
-      ),
+            );
+          }),
     );
   }
 }

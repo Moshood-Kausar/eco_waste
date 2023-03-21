@@ -46,7 +46,7 @@ class ApiCall {
 
   static Future<List<NearByModel>> getnearbyPlace(String latlng) async {
     String keyword = 'waste OR Waste management OR Bin OR Recycle OR Landfill';
-    String location = '7.3218181 3.8472435';
+    String location = latlng;
     String radius = '15000';
     String type = 'waste';
     String key = 'AIzaSyB34FpSJSCaKaWqiDry0OVjrAPNIDFrcoA';

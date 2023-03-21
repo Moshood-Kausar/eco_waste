@@ -11,7 +11,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Blog extends StatefulWidget {
-  const Blog({super.key});
+  Blog({super.key});
 
   @override
   State<Blog> createState() => _BlogState();

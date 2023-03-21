@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/widget/home_card.dart';
@@ -72,12 +70,10 @@ class _HomePageState extends State<HomePage> {
                               pic: '',
                             ),
                             HomeCard(
-                              ontap: () {
-                                Navigator.pushNamed(context, '/location');
-                              },
-                              title: 'Request Pick Up',
+                              ontap: () {},
+                              title: 'What will you like to Recycle',
                               subtitle: 'Let\'s make the environment clean',
-                              buttontext: 'Turn On Location',
+                              buttontext: 'Recycle items',
                               color: AppColor.maingrey,
                               txtColor: Colors.black,
                               buttoncolor: Colors.white,
