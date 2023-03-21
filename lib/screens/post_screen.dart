@@ -172,7 +172,7 @@ class _PostScreenState extends State<PostScreen> {
                                   text: _homeController.currentAddress
                                       .toString()),
                               enable: false,
-                              text: 'Location on maps',
+                              text: '',
                               hintText: 'map location address',
                               icon: const Icon(Icons.location_on_outlined,
                                   color: Colors.grey),
