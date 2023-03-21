@@ -213,7 +213,7 @@ class _PostScreenState extends State<PostScreen> {
                               text: _currentAddress ?? "",
                             ),
                             enable: false,
-                            text: 'Location on maps',
+                            text: '',
                             hintText: 'map location address',
                             icon: const Icon(Icons.location_on_outlined,
                                 color: Colors.grey),
@@ -230,6 +230,16 @@ class _PostScreenState extends State<PostScreen> {
                           ),
                         ),
                       ],
+                    ),
+                    Text(
+                      'Tap the button to automatically generate your location',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        color: Color(
+                          0xff525252,
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 24),
                     const SizedBox(height: 100),

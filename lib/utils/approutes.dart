@@ -2,7 +2,7 @@ import 'package:eco_waste/screens/auth/login.dart';
 import 'package:eco_waste/screens/auth/onboarding.dart';
 import 'package:eco_waste/screens/auth/signup.dart';
 import 'package:eco_waste/screens/auth/splashscreen.dart';
-import 'package:eco_waste/screens/test_map.dart';
+
 import 'package:eco_waste/screens/dashboard.dart';
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/blog.dart';
@@ -26,7 +26,7 @@ class AppRoutes {
     '/blog': (ctx) =>  Blog(),
     '/settings': (ctx) => const Settings(),
     '/profile': (ctx) => const Profile(),
-    '/testmap': (ctx) => const TestMap(),
+   
 
 
     '/postscreen':(ctx) => const PostScreen(),

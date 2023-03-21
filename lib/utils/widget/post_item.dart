@@ -50,7 +50,9 @@ class PostListItem extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(height: 8,),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Row(
                           children: [
                             Icon(
@@ -63,7 +65,7 @@ class PostListItem extends StatelessWidget {
                             ),
                             Text(
                               location,
-                              maxLines: 1,
+                              maxLines: 2,
                             )
                           ],
                         ),
