@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/widget/home_card.dart';
@@ -41,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 18.0, right: 18),
+          padding: const EdgeInsets.only(left: 16.0, right: 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -63,23 +61,21 @@ class _HomePageState extends State<HomePage> {
                               ontap: () {
                                 Navigator.pushNamed(context, '/postscreen');
                               },
-                              color: AppColor.primary,
+                              color: AppColor.maingrey,
                               title: 'Let us know about Waste Around you',
                               subtitle: 'Get in touch with us',
                               buttontext: 'New Post',
-                              txtColor: Colors.white,
-                              buttoncolor: AppColor.primary,
+                              txtColor: Colors.black,
+                              buttoncolor: Colors.white,
                               pic: '',
                             ),
                             HomeCard(
-                              ontap: () {
-                                Navigator.pushNamed(context, '/location');
-                              },
-                              title: 'Request Pick Up',
+                              ontap: () {},
+                              title: 'What will you like to Recycle',
                               subtitle: 'Let\'s make the environment clean',
-                              buttontext: 'Turn On Location',
-                              color: AppColor.mintgreen,
-                              txtColor: AppColor.primary,
+                              buttontext: 'Recycle items',
+                              color: AppColor.maingrey,
+                              txtColor: Colors.black,
                               buttoncolor: Colors.white,
                               pic: '',
                             ),

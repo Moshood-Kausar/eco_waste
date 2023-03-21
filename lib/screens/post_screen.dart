@@ -186,7 +186,47 @@ class _PostScreenState extends State<PostScreen> {
                                   return null;
                                 }
                               },
-                            ),
+                           
+                            enable: false,
+                            text: '',
+                            hintText: 'map location address',
+                            icon: const Icon(Icons.location_on_outlined,
+                                color: Colors.grey),
+                            textInputAction: TextInputAction.next,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Empty field detected';
+                              } else if (value.length < 2) {
+                                return 'Nearest Address cannot be less than 3 characters';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      'Tap the button to automatically generate your location',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        color: Color(
+                          0xff525252,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    const SizedBox(height: 100),
+                    Obx(
+                      () => _homeConntroller.isLoading.value
+                          ? const Center(
+                              child: SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2.2,
+
                           ),
                         ],
                       ),
@@ -200,6 +240,7 @@ class _PostScreenState extends State<PostScreen> {
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2.2,
                                   ),
+
                                 ),
                               )
                             : AppButton(

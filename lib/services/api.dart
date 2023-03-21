@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:eco_waste/services/models/nearby_model.dart';
 import 'package:eco_waste/services/models/waste_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,7 @@ class ApiCall {
         var convert = json.decode(response.body);
         if (convert.toString().isNotEmpty && response.statusCode == 200) {
           WasteModel wasteModel = WasteModel.fromJson(convert);
-        //print(wasteModel);
+          //print(wasteModel);
           return wasteModel;
         }
         return WasteModel.fromJson(jsonDecode(response.body));
@@ -34,10 +35,27 @@ class ApiCall {
       return WasteModel(status: "Failed");
     } on TimeoutException catch (_) {
       //return WasteModel(msg: _timeMsg, status: "Failed");
-      return WasteModel( status: "Failed");
+      return WasteModel(status: "Failed");
     } catch (e) {
       //return WasteModel(status: "Failed", msg: msg + '$e');
-      return WasteModel(status: "Failed",);
+      return WasteModel(
+        status: "Failed",
+      );
     }
+  }
+
+  static Future<List<NearByModel>> getnearbyPlace(String latlng) async {
+    String keyword = 'waste OR Waste management OR Bin OR Recycle OR Landfill';
+    String location = latlng;
+    String radius = '15000';
+    String type = 'waste';
+    String key = 'AIzaSyB34FpSJSCaKaWqiDry0OVjrAPNIDFrcoA';
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=$keyword&location=$location&radius=$radius&type=$type&key=$key'));
+    final result = jsonDecode(response.body);
+    final List nearby = result['results'];
+    print(response.body);
+
+    return nearby.map((e) => NearByModel.fromJson(e)).toList();
   }
 }

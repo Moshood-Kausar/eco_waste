@@ -1,11 +1,16 @@
-import 'package:eco_waste/controller/auth_controller.dart';
+
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/blog.dart';
+import 'package:eco_waste/screens/lat_long.dart';
 import 'package:eco_waste/screens/settings.dart';
-import 'package:eco_waste/screens/trash_centres.dart';
+import 'package:eco_waste/services/api.dart';
+import 'package:eco_waste/services/models/nearby_model.dart';
 import 'package:eco_waste/utils/colors.dart';
+import 'package:eco_waste/utils/widget/shimmer.dart';
+import 'package:eco_waste/utils/widget/trash_center_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -15,21 +20,43 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  List<NearByModel> nearbyLocations = [];
   int currentIndex = 0;
-  List<Widget> screens = [
+  final List<Widget> screens = [
     const HomePage(),
-    const TrashCentres(),
-    const Blog(),
+    Blog(),
     const Settings()
   ];
+  bool loading = true;
+  @override
+  void initState() {
+    super.initState();
+    getCurrentLocation(context).then((value) {
+      ApiCall.getnearbyPlace('${value.latitude} ${value.longitude}')
+          .then((value) {
+        setState(() {
+          nearbyLocations = value;
+
+          screens.insert(
+            2,
+            TrashCentres(data: value),
+            
+          );
+          loading = false;
+        });
+
+        return value;
+      });
+    });
+
+    //isLoading = false;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      // ),
-      body: screens[currentIndex],
+  
+      body: loading ? const CustomShimmer() : screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: AppColor.primary,
         currentIndex: currentIndex,

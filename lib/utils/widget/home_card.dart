@@ -1,3 +1,4 @@
+import 'package:eco_waste/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
@@ -21,7 +22,7 @@ class HomeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width - 100,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(8),
@@ -56,7 +57,7 @@ class HomeCard extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: ontap,
-                  color: txtColor,
+                  color: AppColor.primary,
                   child: Text(
                     '$buttontext',
                     style: TextStyle(

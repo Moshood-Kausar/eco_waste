@@ -11,7 +11,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Blog extends StatefulWidget {
-  const Blog({super.key});
+  Blog({super.key});
 
   @override
   State<Blog> createState() => _BlogState();
@@ -33,11 +33,23 @@ class _BlogState extends State<Blog> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            SizedBox(
+              height: 16,
+            ),
             Text(
               'Blog',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
             ),
-            Text('Why disposing of trash is essential'),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              'Why disposing of trash is essential',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),SizedBox(height: 16,)
           ],
         ),
       ),
@@ -49,10 +61,10 @@ class _BlogState extends State<Blog> {
               case ConnectionState.none:
                 return const Center();
               case ConnectionState.waiting:
-                return CustomShimmer();
-              // return const Center(
-              //   child: CircularProgressIndicator(),
-              // );
+                //return CustomShimmer();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.active:
                 return const Center();
               case ConnectionState.done:
