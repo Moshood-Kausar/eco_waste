@@ -1,4 +1,3 @@
-
 import 'package:eco_waste/screens/homepage.dart';
 import 'package:eco_waste/screens/blog.dart';
 import 'package:eco_waste/screens/lat_long.dart';
@@ -22,11 +21,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   List<NearByModel> nearbyLocations = [];
   int currentIndex = 0;
-  final List<Widget> screens = [
-    const HomePage(),
-    Blog(),
-    const Settings()
-  ];
+  final List<Widget> screens = [const HomePage(), Blog(), const Settings()];
   bool loading = true;
   @override
   void initState() {
@@ -38,9 +33,8 @@ class _DashBoardState extends State<DashBoard> {
           nearbyLocations = value;
 
           screens.insert(
-            2,
+            1,
             TrashCentres(data: value),
-            
           );
           loading = false;
         });
@@ -55,7 +49,6 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
       body: loading ? const CustomShimmer() : screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: AppColor.primary,

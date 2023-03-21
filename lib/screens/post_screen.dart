@@ -187,21 +187,8 @@ class _PostScreenState extends State<PostScreen> {
                                 }
                               },
                            
-                            enable: false,
-                            text: '',
-                            hintText: 'map location address',
-                            icon: const Icon(Icons.location_on_outlined,
-                                color: Colors.grey),
-                            textInputAction: TextInputAction.next,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Empty field detected';
-                              } else if (value.length < 2) {
-                                return 'Nearest Address cannot be less than 3 characters';
-                              } else {
-                                return null;
-                              }
-                            },
+                         
+                            
                           ),
                         ),
                       ],
@@ -218,18 +205,7 @@ class _PostScreenState extends State<PostScreen> {
                     ),
                     const SizedBox(height: 24),
                     const SizedBox(height: 100),
-                    Obx(
-                      () => _homeConntroller.isLoading.value
-                          ? const Center(
-                              child: SizedBox(
-                                height: 30,
-                                width: 30,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2.2,
-
-                          ),
-                        ],
-                      ),
+                 
                       const SizedBox(height: 24),
                       Obx(
                         () => _homeController.isLoading.value
