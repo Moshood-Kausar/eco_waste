@@ -77,7 +77,10 @@ class AppTextFormField extends StatelessWidget {
             hintText: hintText,
             hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
             focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColor.primary)),
+              borderSide: BorderSide(
+                color: AppColor.primary,
+              ),
+            ),
           ),
         ),
       ],

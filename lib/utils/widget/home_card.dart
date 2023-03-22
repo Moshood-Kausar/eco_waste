@@ -22,7 +22,7 @@ class HomeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          width: MediaQuery.of(context).size.width - 100,
+          // width: MediaQuery.of(context).size.width - 100,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(8),

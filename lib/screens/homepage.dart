@@ -33,7 +33,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Text('Let\'s clean our community.'),
+            const Text(
+              'Let\'s clean our community.',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
           ],
         ),
       ),
@@ -47,42 +53,39 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(
                 children: [
-                  SizedBox(
-                    width: width,
-                    height: 200,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 1,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          children: [
-                            HomeCard(
-                              ontap: () {
-                                Navigator.pushNamed(context, '/postscreen');
-                              },
-                              color: AppColor.maingrey,
-                              title: 'Let us know about Waste Around you',
-                              subtitle: 'Get in touch with us',
-                              buttontext: 'New Post',
-                              txtColor: Colors.black,
-                              buttoncolor: Colors.white,
-                              pic: '',
-                            ),
-                            HomeCard(
-                              ontap: () {},
-                              title: 'What will you like to Recycle',
-                              subtitle: 'Let\'s make the environment clean',
-                              buttontext: 'Recycle items',
-                              color: AppColor.maingrey,
-                              txtColor: Colors.black,
-                              buttoncolor: Colors.white,
-                              pic: '',
-                            ),
-                          ],
-                        );
-                      },
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: HomeCard(
+                          ontap: () {
+                            Navigator.pushNamed(context, '/postscreen');
+                          },
+                          color: AppColor.maingrey,
+                          title: 'Let us know about Waste Around you',
+                          subtitle: 'Get in touch with us',
+                          buttontext: 'New Post',
+                          txtColor: Colors.black,
+                          buttoncolor: Colors.white,
+                          pic: '',
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: HomeCard(
+                          ontap: () {
+                            Navigator.pushNamed(context, '/recyclescreen');
+                          },
+                          title: 'What will you like to Recycle',
+                          subtitle: 'Let\'s make the environment clean',
+                          buttontext: 'Recycle items',
+                          color: AppColor.maingrey,
+                          txtColor: Colors.black,
+                          buttoncolor: Colors.white,
+                          pic: '',
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 30,
@@ -90,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Posts',
+                      'Community Watch',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                     ),
@@ -133,6 +136,8 @@ class _HomePageState extends State<HomePage> {
                                   .toString(),
                               date: snapshot.data!.docs[index]['created_at']
                                   .toString(),
+                              coordinate: snapshot.data!.docs[index]
+                                  ['coordinate'],
                             );
                           },
                         ),
