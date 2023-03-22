@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:eco_waste/utils/colors.dart';
+import 'package:eco_waste/utils/widget/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,6 +33,7 @@ class _BlogCardState extends State<BlogCard> {
   );
   @override
   void initState() {
+    widget.data.articles!.shuffle();
     super.initState();
     pullToRefreshController = PullToRefreshController(
       options: PullToRefreshOptions(color: Colors.blue),
@@ -65,62 +67,21 @@ class _BlogCardState extends State<BlogCard> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              InAppWebView(
-                key: webViewKey,
-                initialUrlRequest: URLRequest(
-                    url: Uri.parse("${widget.data.articles![index].url}")),
-                initialOptions: options,
-                pullToRefreshController: pullToRefreshController,
-                onWebViewCreated: (controller) {
-                  _webViewController = controller;
-                },
-                onLoadStart: (controller, url) {
-                  setState(() {
-                    urls = url;
-                  });
-                },
-                androidOnPermissionRequest:
-                    (controller, origin, resources) async {
-                  return PermissionRequestResponse(
-                      resources: resources,
-                      action: PermissionRequestResponseAction.GRANT);
-                },
-                onLoadStop: (controller, url) {
-                  pullToRefreshController!.endRefreshing();
-                },
-                onLoadError: (controller, url, code, message) {
-                  pullToRefreshController!.endRefreshing();
-                },
-                onProgressChanged: (controller, progress) {
-                  if (progress == 100) {
-                    pullToRefreshController!.endRefreshing();
-                  }
-                  setState(() {
-                    this.progress = progress / 100;
-                  });
-                },
-                onConsoleMessage: (controller, consoleMessage) {
-                  debugPrint('$consoleMessage');
-                },
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => WebViews(
+                    link: '${widget.data.articles![index].url}',
+                    title: '${widget.data.articles![index].title}',
+                  ),
+                ),
               );
-    
-            
             },
             child: Container(
-              margin:  EdgeInsets.only(top: 16),
+              margin: EdgeInsets.only(top: 16),
               decoration: BoxDecoration(
-                border: Border.all(color:AppColor.maingrey, width: 3.0),
+                border: Border.all(color: AppColor.maingrey, width: 3.0),
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-                //border:Border(Border))
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.grey.withOpacity(0.5),
-                //     blurRadius: 12.0,
-                //     offset: const Offset(4.0, 5.0),
-                //   ),
-                // ],
-                // border: Border.all(color: Colors.red),
               ),
               child: Column(
                 children: [

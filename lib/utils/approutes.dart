@@ -10,6 +10,7 @@ import 'package:eco_waste/screens/blog.dart';
 import 'package:eco_waste/screens/post_screen.dart';
 import 'package:eco_waste/screens/profile.dart';
 import 'package:eco_waste/screens/settings.dart';
+import 'package:eco_waste/utils/widget/webview.dart';
 
 import 'package:flutter/material.dart';
 
@@ -30,5 +31,6 @@ class AppRoutes {
 
 
     '/postscreen':(ctx) => const PostScreen(),
+    '/webview': (ctx) => WebViews(title: '',link: ''),
   };
 }

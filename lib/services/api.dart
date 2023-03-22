@@ -11,7 +11,7 @@ class ApiCall {
   //final String msg = "An error occured: ";
   //static const String apiKey = "7c760c888117450f9ac628d1e86a7517";
   String wasteUrl =
-      "https://newsapi.org/v2/everything?from=2023-03-10&to=2022-03-10&sortBy=relevancy&apiKey=7c760c888117450f9ac628d1e86a7517&searchIn=content&q=waste OR Plastics OR bin OR Recycle OR trash";
+      "https://newsapi.org/v2/everything?sortBy=relevancy&apiKey=7c760c888117450f9ac628d1e86a7517&searchIn=content&q=waste OR Plastics OR bin OR Recycle OR trash";
   // String appleUrl =
   //     "https://newsapi.org/v2/everything?q=apple&sortBy=popularity&apiKey=$apiKey";
 
