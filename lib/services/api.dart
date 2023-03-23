@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:eco_waste/services/models/nearby_model.dart';
+import 'package:eco_waste/services/models/placeid_model.dart';
 import 'package:eco_waste/services/models/waste_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCall {
   final String _nointernet = "No internet connection";
   final String _timeMsg = "Request timeout, connect to a better network";
-  //final String msg = "An error occured: ";
-  //static const String apiKey = "7c760c888117450f9ac628d1e86a7517";
+
+  String apiKey = "7c760c888117450f9ac628d1e86a7517";
   String wasteUrl =
       "https://newsapi.org/v2/everything?sortBy=relevancy&apiKey=7c760c888117450f9ac628d1e86a7517&searchIn=content&q=waste OR Plastics OR bin OR Recycle OR trash";
   // String appleUrl =
@@ -57,5 +58,38 @@ class ApiCall {
     print(response.body);
 
     return nearby.map((e) => NearByModel.fromJson(e)).toList();
+  }
+
+  static Future<PlaceIdModel> placeidApi() async {
+    String key = 'AIzaSyB34FpSJSCaKaWqiDry0OVjrAPNIDFrcoA';
+    String place_id = '';
+    String placeidUrl =
+        'https://maps.googleapis.com/maps/api/place/details/json?key=$key&place_id=ChIJLzN18gGNORARv5R2I-4Z8uo';
+    try {
+      final response = await http.get(Uri.parse(placeidUrl)).timeout(
+            const Duration(seconds: 60),
+          );
+      if (response.statusCode == 200) {
+        var convert = json.decode(response.body);
+        if (convert.toString().isNotEmpty && response.statusCode == 200) {
+          PlaceIdModel placeidModel = PlaceIdModel.fromJson(convert);
+          //print(wasteModel);
+          return placeidModel;
+        }
+        return PlaceIdModel.fromJson(jsonDecode(response.body));
+      } else {
+        return PlaceIdModel(status: "Failed");
+      }
+    } on SocketException catch (_) {
+      return PlaceIdModel(status: "Failed");
+    } on TimeoutException catch (_) {
+      //return WasteModel(msg: _timeMsg, status: "Failed");
+      return PlaceIdModel(status: "Failed");
+    } catch (e) {
+      //return WasteModel(status: "Failed", msg: msg + '$e');
+      return PlaceIdModel(
+        status: "Failed",
+      );
+    }
   }
 }
