@@ -1,6 +1,11 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/controller/recycle_controller.dart';
 import 'package:eco_waste/data/recycled.dart';
 import 'package:eco_waste/screens/recycle/recycle_item.dart';
+import 'package:eco_waste/screens/recycle/widget/recycle_list_item.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
@@ -12,6 +17,8 @@ class RecycleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final RecycleController recycleController = Get.put(RecycleController());
+    final AuthController _authController = Get.find();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -44,50 +51,53 @@ class RecycleScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Number of Items recycled.'),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        RecycleItems(
-                          image: 'assets/images/plastic.png',
-                          title: 'Plastics',
-                          value: '0',
-                        ),
-                        RecycleItems(
-                          image: 'assets/images/glass.png',
-                          title: 'Glass',
-                          value: '0',
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Row(
-                      children: const [
-                        RecycleItems(
-                          image: 'assets/images/box.png',
-                          title: 'Carboard',
-                          value: '0',
-                        ),
-                        RecycleItems(
-                          image: 'assets/images/electronics.png',
-                          title: 'Electronics',
-                          value: '0',
-                        ),
-                      ],
-                    ),
-                  ],
+              child: Obx(
+                () => Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Number of Items recycled.'),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        children: [
+                          RecycleItems(
+                            image: 'assets/images/plastic.png',
+                            title: 'Plastics',
+                            value: recycleController.noPlastics.value,
+                          ),
+                          RecycleItems(
+                            image: 'assets/images/glass.png',
+                            title: 'Glass',
+                            value: recycleController.noGlass.value,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          RecycleItems(
+                            image: 'assets/images/box.png',
+                            title: 'Carboard',
+                            value: recycleController.noCarboard.value,
+                          ),
+                          RecycleItems(
+                            image: 'assets/images/electronics.png',
+                            title: 'Electronics',
+                            value: recycleController.noElectronics.value,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+
             const SizedBox(
               height: 16,
             ),
@@ -98,57 +108,56 @@ class RecycleScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: ((context, index) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: AppColor.maingrey,
-                                  child: Image.asset(
-                                    'assets/images/plastic.png',
-                                    height: 24,
-                                    width: 24,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Item type'),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text('10'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text('10-29-2020'),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text('Picked up'),
-                          ],
-                        ),
-                      ],
-                    )),
-              ),
+            StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('recycle')
+                  .doc('hHbvQclpV7VBTwSIWlfLI2cKQbZ2')
+                  .collection('list')
+                  .orderBy("created_at", descending: true)
+                  .snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return const Text('ConnectionState.waiting');
+                  case ConnectionState.none:
+                    return const Text('ConnectionState.none');
+                  case ConnectionState.active:
+                    return Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.docs.length,
+                        // scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          Recycled recycled = Recycled(
+                              userId: snapshot.data!.docs[index]['userID'],
+                              item: snapshot.data!.docs[index]['item'],
+                              qty: snapshot.data!.docs[index]['qty'],
+                              isPickedUp: snapshot.data!.docs[index]
+                                  ['isPickedUp'],
+                              createdAt: snapshot.data!.docs[index]
+                                  ['created_at']);
+                          return ListItemRecycle(
+                            recycled: recycled,
+                          );
+                        },
+                      ),
+                    );
+                  case ConnectionState.done:
+                    return const Text('ConnectionState.done');
+                }
+              },
             ),
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: ((context, index) => const ListItemRecycle(recycled: null,)),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -184,8 +193,6 @@ class RecycleBottomModal extends StatefulWidget {
   State<RecycleBottomModal> createState() => _RecycleBottomModalState();
 }
 
-TextEditingController amount = TextEditingController();
-
 var items = [
   'Plastic',
   'Cardboard',
@@ -200,6 +207,7 @@ class _RecycleBottomModalState extends State<RecycleBottomModal> {
   //   super.dispose();
   // }
   String? dropdownvalue;
+  TextEditingController amount = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -271,6 +279,7 @@ class _RecycleBottomModalState extends State<RecycleBottomModal> {
                   ),
                   AppButton(
                       onPressed: () async {
+                        log('clieck');
                         String qty = amount.text.toString();
 
                         if (qty.isNotEmpty && dropdownvalue!.isNotEmpty) {
@@ -282,6 +291,7 @@ class _RecycleBottomModalState extends State<RecycleBottomModal> {
                               createdAt: DateTime.now().toString());
                           await recycleController.postRecycle(recycled);
                         }
+                        log('finish');
                       },
                       text: 'Recycle'),
                 ],
