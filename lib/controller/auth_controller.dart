@@ -39,8 +39,6 @@ class AuthController extends GetxController {
   Stream<User?> get user => _auth.authStateChanges();
 
   Stream<UserModel> streamFirestoreUser() {
-    print('streamFirestoreUser()');
-
     return _db
         .doc('/users/${firebaseUser.value!.uid}')
         .snapshots()

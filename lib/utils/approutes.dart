@@ -9,6 +9,7 @@ import 'package:eco_waste/screens/blog.dart';
 
 import 'package:eco_waste/screens/post_screen.dart';
 import 'package:eco_waste/screens/profile.dart';
+import 'package:eco_waste/screens/recycle/recycling.dart';
 import 'package:eco_waste/screens/settings.dart';
 
 import 'package:flutter/material.dart';
@@ -22,13 +23,10 @@ class AppRoutes {
     '/login': (ctx) => const LoginScreen(),
     '/dashboard': (ctx) => const DashBoard(),
     '/homepage': (ctx) => const HomePage(),
-   
-    '/blog': (ctx) =>  Blog(),
+    '/blog': (ctx) => Blog(),
     '/settings': (ctx) => const Settings(),
     '/profile': (ctx) => const Profile(),
-   
-
-
-    '/postscreen':(ctx) => const PostScreen(),
+    '/postscreen': (ctx) => const PostScreen(),
+    '/recyclescreen': (ctx) => const RecycleScreen(),
   };
 }
