@@ -3,6 +3,7 @@ import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/widget/home_card.dart';
 import 'package:eco_waste/utils/widget/post_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../controller/auth_controller.dart';
@@ -111,8 +112,11 @@ class _HomePageState extends State<HomePage> {
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (!snapshot.hasData) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return  Center(
+                      child: SpinKitThreeBounce(
+                                              color: AppColor.primary,
+                                              size: 16,
+                                            ),
                     );
                   }
                   switch (snapshot.connectionState) {

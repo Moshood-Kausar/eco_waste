@@ -172,7 +172,7 @@ class OpeningHours {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['open_now'] = openNow;
+    data['open_now'] = openNow ?? false;
     return data;
   }
 }

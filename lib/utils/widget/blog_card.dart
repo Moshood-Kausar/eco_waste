@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:eco_waste/utils/colors.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,6 +33,8 @@ class _BlogCardState extends State<BlogCard> {
   );
   @override
   void initState() {
+    widget.data.articles!.shuffle();
+
     super.initState();
     pullToRefreshController = PullToRefreshController(
       options: PullToRefreshOptions(color: Colors.blue),
@@ -103,13 +106,11 @@ class _BlogCardState extends State<BlogCard> {
                   debugPrint('$consoleMessage');
                 },
               );
-    
-            
             },
             child: Container(
-              margin:  EdgeInsets.only(top: 16),
+              margin: EdgeInsets.only(top: 16),
               decoration: BoxDecoration(
-                border: Border.all(color:AppColor.maingrey, width: 3.0),
+                border: Border.all(color: AppColor.maingrey, width: 3.0),
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 //border:Border(Border))
@@ -126,16 +127,16 @@ class _BlogCardState extends State<BlogCard> {
                 children: [
                   Container(
                     height: 140,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
                       ),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            "${widget.data.articles![index].urlToImage}"),
-                        fit: BoxFit.cover,
-                      ),
+                    ),
+                    child: FancyShimmerImage(
+                      imageUrl: '${widget.data.articles![index].urlToImage}',
+                      boxFit: BoxFit.cover,
                     ),
                   ),
                   Padding(

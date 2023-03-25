@@ -8,6 +8,7 @@ import 'package:eco_waste/utils/widget/shimmer.dart';
 import 'package:eco_waste/utils/widget/blog_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Blog extends StatefulWidget {
@@ -49,7 +50,10 @@ class _BlogState extends State<Blog> {
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
-            ),SizedBox(height: 16,)
+            ),
+            SizedBox(
+              height: 16,
+            )
           ],
         ),
       ),
@@ -62,8 +66,11 @@ class _BlogState extends State<Blog> {
                 return const Center();
               case ConnectionState.waiting:
                 //return CustomShimmer();
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return  Center(
+                  child: SpinKitThreeBounce(
+                                              color: AppColor.primary,
+                                              size: 16,
+                                            ),
                 );
               case ConnectionState.active:
                 return const Center();

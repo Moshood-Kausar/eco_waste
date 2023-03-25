@@ -6,6 +6,7 @@ import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -152,9 +153,9 @@ class _PostScreenState extends State<PostScreen> {
                                           child: SizedBox(
                                             height: 30,
                                             width: 30,
-                                            child: CircularProgressIndicator(
+                                            child: SpinKitThreeBounce(
                                               color: Colors.white,
-                                              strokeWidth: 2.2,
+                                              size: 16,
                                             ),
                                           ),
                                         ),
@@ -213,9 +214,10 @@ class _PostScreenState extends State<PostScreen> {
                                 child: SizedBox(
                                   height: 30,
                                   width: 30,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2.2,
-                                  ),
+                                  child:SpinKitThreeBounce(
+                                              color: Colors.white,
+                                              size: 16,
+                                            ),
 
                                 ),
                               )
@@ -274,4 +276,5 @@ class ImageSelector extends StatelessWidget {
       ),
     );
   }
+  
 }
