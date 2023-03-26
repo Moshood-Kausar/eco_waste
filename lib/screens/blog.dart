@@ -8,23 +8,18 @@ import 'package:eco_waste/utils/widget/shimmer.dart';
 import 'package:eco_waste/utils/widget/blog_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Blog extends StatefulWidget {
-  Blog({super.key});
+  final WasteModel blog;
+  Blog({super.key, required this.blog});
 
   @override
   State<Blog> createState() => _BlogState();
 }
 
 class _BlogState extends State<Blog> {
-  Future<WasteModel>? _wasteNews;
-  @override
-  void initState() {
-    super.initState();
-    _wasteNews = ApiCall().wasteApi();
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -49,48 +44,15 @@ class _BlogState extends State<Blog> {
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
-            ),SizedBox(height: 16,)
+            ),
+            SizedBox(
+              height: 16,
+            )
           ],
         ),
       ),
       body: SingleChildScrollView(
-        child: FutureBuilder<WasteModel>(
-          future: _wasteNews,
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-                return const Center();
-              case ConnectionState.waiting:
-                //return CustomShimmer();
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              case ConnectionState.active:
-                return const Center();
-              case ConnectionState.done:
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text(
-                      'Unable to get Waste News. Kindly Refresh',
-                      style: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.w500),
-                    ),
-                  );
-                } else if (snapshot.hasData) {
-                  if (snapshot.data!.articles == null ||
-                      snapshot.data!.articles!.isEmpty) {
-                    return const Center(
-                      child: Text('Oops! No article found 🥴'),
-                    );
-                  } else {
-                    return BlogCard(data: snapshot.data!);
-                  }
-                } else {
-                  return const Text('No Internet Connection');
-                }
-            }
-          },
-        ),
+        child: BlogCard(data: widget.blog),
       ),
     );
   }

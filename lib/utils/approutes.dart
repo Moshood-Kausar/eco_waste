@@ -23,10 +23,11 @@ class AppRoutes {
     '/login': (ctx) => const LoginScreen(),
     '/dashboard': (ctx) => const DashBoard(),
     '/homepage': (ctx) => const HomePage(),
-    '/blog': (ctx) => Blog(),
+    //'/blog': (ctx) => Blog(),
     '/settings': (ctx) => const Settings(),
     '/profile': (ctx) => const Profile(),
     '/postscreen': (ctx) => const PostScreen(),
     '/recyclescreen': (ctx) => const RecycleScreen(),
+    
   };
 }

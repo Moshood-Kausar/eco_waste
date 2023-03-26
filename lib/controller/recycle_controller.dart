@@ -51,20 +51,29 @@ class RecycleController extends GetxController {
           .doc(_authController.firebaseUser.value!.uid)
           .collection('list')
           .add({
-            "userID": _authController.firebaseUser.value!.uid,
-            "item": post.item,
-            "qty": post.qty,
-            "isPickedUp": post.isPickedUp,
-            "created_at": post.createdAt
-          })
-          .then(
-            (value) async => {
-              if (post.item == 'Plastic')
+        "userID": _authController.firebaseUser.value!.uid,
+        "item": post.item,
+        "qty": post.qty,
+        "isPickedUp": post.isPickedUp,
+        "created_at": post.createdAt
+      }).then(
+        (value) async => {await FirebaseFirestore.instance
+                      .collection('recycle')
+                      .doc(_authController.firebaseUser.value!.uid)
+                      .set(
+                    {
+                      'noPlastics':
+                          int.parse(noPlastics.value) + int.parse(post.qty)
+                    },
+                  )},
+      ).then((value) async =>
+      
+      {     if (post.item == 'Plastic')
                 {
                   await FirebaseFirestore.instance
                       .collection('recycle')
                       .doc(_authController.firebaseUser.value!.uid)
-                      .update(
+                      .set(
                     {
                       'noPlastics':
                           int.parse(noPlastics.value) + int.parse(post.qty)
@@ -76,7 +85,7 @@ class RecycleController extends GetxController {
                   await FirebaseFirestore.instance
                       .collection('recycle')
                       .doc(_authController.firebaseUser.value!.uid)
-                      .update(
+                      .set(
                     {
                       'noCarboard':
                           int.parse(noCarboard.value) + int.parse(post.qty)
@@ -88,7 +97,7 @@ class RecycleController extends GetxController {
                   await FirebaseFirestore.instance
                       .collection('recycle')
                       .doc(_authController.firebaseUser.value!.uid)
-                      .update(
+                      .set(
                     {'noGlass': int.parse(noGlass.value) + int.parse(post.qty)},
                   )
                 }
@@ -97,18 +106,16 @@ class RecycleController extends GetxController {
                   await FirebaseFirestore.instance
                       .collection('recycle')
                       .doc(_authController.firebaseUser.value!.uid)
-                      .update(
+                      .set(
                     {
                       'noElectronics':
                           int.parse(noElectronics.value) + int.parse(post.qty)
                     },
                   )
-                },
-            },
-          )
-          .then(
-            (value) => records(),
-          );
+                },})
+      .then(
+        (value) => records(),
+      );
       Get.back();
     } catch (e) {
       log(e.toString());

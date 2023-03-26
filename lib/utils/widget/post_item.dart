@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:eco_waste/utils/colors.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:map_launcher/map_launcher.dart';
@@ -29,12 +30,12 @@ class PostListItem extends StatelessWidget {
         if (isMap != null && isMap == true) {
           await MapLauncher.showMarker(
             mapType: MapType.google,
-            coords: Coords(double.parse(parts[0]), double.parse(parts[0])),
+            coords: Coords(double.parse(parts[0]), double.parse(parts[1])),
             title: landmark,
             description: location,
           );
         } else {
-          log('No map insttaled');
+          log('No map installed');
         }
       },
       child: Padding(
@@ -46,17 +47,15 @@ class PostListItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              SizedBox(
+              Container(
                 width: 100,
-                height: 80,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                  ),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                height: 110,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                ),
+                child: FancyShimmerImage(
+                  imageUrl: imageUrl,
+                  boxFit: BoxFit.cover,
                 ),
               ),
               Expanded(

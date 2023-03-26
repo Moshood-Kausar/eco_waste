@@ -10,6 +10,7 @@ import 'package:eco_waste/utils/appbuttons.dart';
 import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class RecycleScreen extends StatelessWidget {
@@ -117,8 +118,11 @@ class RecycleScreen extends StatelessWidget {
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return  Center(
+                    child: SpinKitThreeBounce(
+                                              color: AppColor.primary,
+                                              size: 16,
+                                            ),
                   );
                 }
                 switch (snapshot.connectionState) {

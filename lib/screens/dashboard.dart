@@ -21,7 +21,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   List<NearByModel> nearbyLocations = [];
   int currentIndex = 0;
-  final List<Widget> screens = [const HomePage(), Blog(), const Settings()];
+  final List<Widget> screens = [const HomePage(),  const Settings()];
   bool loading = true;
   @override
   void initState() {
@@ -29,14 +29,17 @@ class _DashBoardState extends State<DashBoard> {
     getCurrentLocation(context).then((value) {
       ApiCall.getnearbyPlace('${value.latitude} ${value.longitude}')
           .then((value) {
-        setState(() {
-          nearbyLocations = value;
+        ApiCall().wasteApi().then((value1) {
+          setState(() {
+            nearbyLocations = value;
 
-          screens.insert(
-            1,
-            TrashCentres(data: value),
-          );
-          loading = false;
+            screens.insertAll(
+              1,
+              [TrashCentres(data: value),
+              Blog(blog:value1,)]
+            );
+            loading = false;
+          });
         });
 
         return value;

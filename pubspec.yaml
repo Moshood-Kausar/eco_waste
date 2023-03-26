@@ -33,6 +33,7 @@ dependencies:
   camera: ^0.10.3+2
   cloud_firestore: ^4.4.3
   cupertino_icons: ^1.0.2
+  fancy_shimmer_image: ^2.0.2
   file_picker: ^5.2.6
   firebase_auth: ^4.3.0
   firebase_core: ^2.7.0
@@ -40,6 +41,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_inappwebview: ^5.3.2
+  flutter_spinkit: ^5.1.0
   flutter_svg: ^1.1.4
   geocoding: ^2.0.5
   geolocator: ^9.0.2

@@ -44,7 +44,7 @@ class NearByModel {
     name = json['name'];
     openingHours = json['opening_hours'] != null
         ? OpeningHours.fromJson(json['opening_hours'])
-        : null;
+        : OpeningHours(openNow: false);
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {

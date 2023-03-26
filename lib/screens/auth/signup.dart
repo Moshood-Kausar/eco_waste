@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:eco_waste/controller/auth_controller.dart';
 import 'package:eco_waste/data/user.dart';
 import 'package:eco_waste/utils/appbuttons.dart';
+import 'package:eco_waste/utils/colors.dart';
 import 'package:eco_waste/utils/text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -148,13 +150,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 100),
                   Obx(
                     () => _authController.isLoading.value
-                        ? const Center(
+                        ?  Center(
                             child: SizedBox(
                               height: 30,
                               width: 30,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.2,
-                              ),
+                              child: SpinKitThreeBounce(
+                                              color: AppColor.primary,
+                                              size: 16,
+                                            ),
                             ),
                           )
                         : SizedBox(
