@@ -29,7 +29,6 @@ class AuthController extends GetxController {
     }
 
     if (_firebaseUser == null) {
-      print('Send to signin');
       Get.offAll(const LoginScreen());
     } else {
       Get.offAll(const DashBoard());
@@ -61,7 +60,7 @@ class AuthController extends GetxController {
       isLoading(false);
     } catch (error) {
       isLoading(false);
-      Get.snackbar('auth.signInErrorTitle'.tr, 'auth.signInError'.tr,
+      Get.snackbar('auth.signInErrorTitle', 'auth.signInError',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
           colorText: Get.theme.snackBarTheme.actionTextColor);

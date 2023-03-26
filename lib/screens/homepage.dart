@@ -112,11 +112,11 @@ class _HomePageState extends State<HomePage> {
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (!snapshot.hasData) {
-                    return  Center(
+                    return Center(
                       child: SpinKitThreeBounce(
-                                              color: AppColor.primary,
-                                              size: 16,
-                                            ),
+                        color: AppColor.primary,
+                        size: 16,
+                      ),
                     );
                   }
                   switch (snapshot.connectionState) {
@@ -142,6 +142,7 @@ class _HomePageState extends State<HomePage> {
                                   .toString(),
                               coordinate: snapshot.data!.docs[index]
                                   ['coordinate'],
+                              isPicked: snapshot.data!.docs[index]['isPicked'],
                             );
                           },
                         ),

@@ -11,6 +11,7 @@ class DumpPost {
     required this.landmark,
     required this.location,
     required this.coordinate,
+    this.isPicked = false,
     required this.createdAt,
   });
 
@@ -20,6 +21,7 @@ class DumpPost {
   String location;
   String coordinate;
   String createdAt;
+  bool isPicked;
 
   factory DumpPost.fromJson(Map<String, dynamic> json) => DumpPost(
         userId: json["userID"],
@@ -27,6 +29,7 @@ class DumpPost {
         landmark: json["landmark"],
         location: json["location"],
         coordinate: json["coordinate"],
+        isPicked: json["isPicked"],
         createdAt: json["created_at"],
       );
 
@@ -36,6 +39,7 @@ class DumpPost {
         "landmark": landmark,
         "location": location,
         "coordinate": coordinate,
+        "isPicked": isPicked,
         "created_at": createdAt,
       };
 }
