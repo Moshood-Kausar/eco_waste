@@ -128,10 +128,10 @@ class _PostScreenState extends State<PostScreen> {
                             padding: const EdgeInsets.only(top: 30),
                             child: GestureDetector(
                               onTap: () async {
-                                _homeController.isLoading(true);
+                                _homeController.isLoadingLocation(true);
                                 await _homeController
                                     .getCurrentPosition(context);
-                                _homeController.isLoading(false);
+                                _homeController.isLoadingLocation(false);
                               },
                               child: Container(
                                 color: AppColor.primary,
@@ -139,7 +139,7 @@ class _PostScreenState extends State<PostScreen> {
                                 width: 40,
                                 child: Padding(
                                   padding: const EdgeInsets.all(1.0),
-                                  child: _homeController.isLoading.value
+                                  child: _homeController.isLoadingLocation.value
                                       ? const Center(
                                           child: SizedBox(
                                             height: 30,
@@ -206,12 +206,12 @@ class _PostScreenState extends State<PostScreen> {
                       const SizedBox(height: 48),
                       Obx(
                         () => _homeController.isLoading.value
-                            ? const Center(
+                            ?  Center(
                                 child: SizedBox(
                                   height: 30,
                                   width: 30,
                                   child: SpinKitThreeBounce(
-                                    color: Colors.white,
+                                    color: AppColor.primary,
                                     size: 16,
                                   ),
                                 ),
