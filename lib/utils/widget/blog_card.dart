@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:eco_waste/utils/colors.dart';
+import 'package:eco_waste/utils/widget/webview.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -14,40 +15,11 @@ class BlogCard extends StatefulWidget {
 }
 
 class _BlogCardState extends State<BlogCard> {
-  final GlobalKey webViewKey = GlobalKey();
-  InAppWebViewController? _webViewController;
-  double progress = 0;
-  dynamic urls = '';
-  PullToRefreshController? pullToRefreshController;
-  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-    crossPlatform: InAppWebViewOptions(
-      javaScriptEnabled: true,
-      useShouldOverrideUrlLoading: true,
-      mediaPlaybackRequiresUserGesture: false,
-    ),
-    android: AndroidInAppWebViewOptions(
-      initialScale: 100,
-      useHybridComposition: true,
-    ),
-    ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
-  );
   @override
   void initState() {
     widget.data.articles!.shuffle();
 
     super.initState();
-    pullToRefreshController = PullToRefreshController(
-      options: PullToRefreshOptions(color: Colors.blue),
-      onRefresh: () async {
-        if (Platform.isAndroid) {
-          _webViewController!.reload();
-        } else if (Platform.isIOS) {
-          _webViewController?.loadUrl(
-            urlRequest: URLRequest(url: await _webViewController!.getUrl()),
-          );
-        }
-      },
-    );
   }
 
   @override
@@ -68,43 +40,14 @@ class _BlogCardState extends State<BlogCard> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              InAppWebView(
-                key: webViewKey,
-                initialUrlRequest: URLRequest(
-                    url: Uri.parse("${widget.data.articles![index].url}")),
-                initialOptions: options,
-                pullToRefreshController: pullToRefreshController,
-                onWebViewCreated: (controller) {
-                  _webViewController = controller;
-                },
-                onLoadStart: (controller, url) {
-                  setState(() {
-                    urls = url;
-                  });
-                },
-                androidOnPermissionRequest:
-                    (controller, origin, resources) async {
-                  return PermissionRequestResponse(
-                      resources: resources,
-                      action: PermissionRequestResponseAction.GRANT);
-                },
-                onLoadStop: (controller, url) {
-                  pullToRefreshController!.endRefreshing();
-                },
-                onLoadError: (controller, url, code, message) {
-                  pullToRefreshController!.endRefreshing();
-                },
-                onProgressChanged: (controller, progress) {
-                  if (progress == 100) {
-                    pullToRefreshController!.endRefreshing();
-                  }
-                  setState(() {
-                    this.progress = progress / 100;
-                  });
-                },
-                onConsoleMessage: (controller, consoleMessage) {
-                  debugPrint('$consoleMessage');
-                },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => AppWebView(
+                    url: "${widget.data.articles![index].url}",
+                    title: '${widget.data.articles![index].title}',
+                  ),
+                ),
               );
             },
             child: Container(

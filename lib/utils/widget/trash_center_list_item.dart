@@ -51,6 +51,8 @@ class _TrashCentresState extends State<TrashCentres> {
       body: ListView.builder(
           itemCount: widget.data.length,
           itemBuilder: (context, index) {
+            //bool show = widget.data[index].openingHours!.openNow ?? false;
+            //print('${widget.data[index].openingHours}');
             return GestureDetector(
               onTap: () async {
                 bool? isMap = await MapLauncher.isMapAvailable(MapType.google);
@@ -83,6 +85,7 @@ class _TrashCentresState extends State<TrashCentres> {
                       minVerticalPadding: 10,
                       title: Text(
                         '${widget.data[index].name}',
+                        maxLines: 1,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
@@ -99,10 +102,34 @@ class _TrashCentresState extends State<TrashCentres> {
                             ),
                           ),
                           Expanded(
-                              child: Text('${widget.data[index].vicinity}'))
+                              child: Text(
+                            '${widget.data[index].vicinity}',
+                            maxLines: 2,
+                          ))
                         ],
                       ),
-                      leading: Text(widget.data[index].openingHours!.openNow),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            widget.data[index].openingHours!.openNow
+                                ? 'Open'
+                                : 'Close',
+                            style: TextStyle(
+                              color: widget.data[index].openingHours!.openNow
+                                  ? Colors.green
+                                  : Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            size: 14,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

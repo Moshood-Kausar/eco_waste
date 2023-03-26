@@ -44,7 +44,7 @@ class NearByModel {
     name = json['name'];
     openingHours = json['opening_hours'] != null
         ? OpeningHours.fromJson(json['opening_hours'])
-        : null;
+        : OpeningHours(openNow: false);
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
@@ -172,7 +172,7 @@ class OpeningHours {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['open_now'] = openNow ?? false;
+    data['open_now'] = openNow;
     return data;
   }
 }
