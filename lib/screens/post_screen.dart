@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:eco_waste/controller/auth_controller.dart';
@@ -104,7 +105,7 @@ class _PostScreenState extends State<PostScreen> {
                       AppTextFormField(
                         maxLength: 20,
                         controller: _address,
-                        text: 'Nearest Address',
+                        text: 'Nearest Address/Landmark',
                         hintText: 'Oduduwa City',
                         icon: const Icon(Icons.location_city_sharp,
                             color: Colors.grey),
@@ -126,14 +127,11 @@ class _PostScreenState extends State<PostScreen> {
                               child: Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  btnLoad = true;
-                                });
-                                _homeController.getCurrentPosition(context);
-                                setState(() {
-                                  btnLoad = false;
-                                });
+                              onTap: () async {
+                                _homeController.isLoading(true);
+                                await _homeController
+                                    .getCurrentPosition(context);
+                                _homeController.isLoading(false);
                               },
                               child: Container(
                                 color: AppColor.primary,
@@ -141,15 +139,8 @@ class _PostScreenState extends State<PostScreen> {
                                 width: 40,
                                 child: Padding(
                                   padding: const EdgeInsets.all(1.0),
-                                  child: !btnLoad
-                                      ? const Text(
-                                          'Tap to \n Locate',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12),
-                                          textAlign: TextAlign.center,
-                                        )
-                                      : const Center(
+                                  child: _homeController.isLoading.value
+                                      ? const Center(
                                           child: SizedBox(
                                             height: 30,
                                             width: 30,
@@ -158,6 +149,14 @@ class _PostScreenState extends State<PostScreen> {
                                               size: 16,
                                             ),
                                           ),
+                                        )
+                                      : const Text(
+                                          'Tap to \n Locate',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
                                 ),
                               ),
@@ -187,54 +186,75 @@ class _PostScreenState extends State<PostScreen> {
                                   return null;
                                 }
                               },
-                           
-                         
-                            
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      const Text(
+                        'Tap the button to automatically generate your location',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: Color(
+                            0xff525252,
                           ),
                         ),
-                      ],
-                    ),
-                    Text(
-                      'Tap the button to automatically generate your location',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        color: Color(
-                          0xff525252,
-                        ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    const SizedBox(height: 100),
-                 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 48),
                       Obx(
                         () => _homeController.isLoading.value
                             ? const Center(
                                 child: SizedBox(
                                   height: 30,
                                   width: 30,
-                                  child:SpinKitThreeBounce(
-                                              color: Colors.white,
-                                              size: 16,
-                                            ),
-
+                                  child: SpinKitThreeBounce(
+                                    color: Colors.white,
+                                    size: 16,
+                                  ),
                                 ),
                               )
                             : AppButton(
                                 onPressed: () async {
-                                  DumpPost post = DumpPost(
-                                    userId:
-                                        _authController.firebaseUser.value!.uid,
-                                    imageUrl: '',
-                                    landmark: _address.text.trim().toString(),
-                                    location: _homeController.currentAddress
-                                        .toString(),
-                                    coordinate:
-                                        _homeController.coordinate.toString(),
-                                    createdAt: DateTime.now().toString(),
-                                  );
-                                  await _homeController.uploadImage(post);
+                                  String address =
+                                      _address.text.trim().toString();
+                                  String mapAddress =
+                                      _homeController.currentAddress.toString();
+
+                                  if (_homeController.filePath
+                                      .toString()
+                                      .isEmpty) {
+                                    Get.snackbar('Required field',
+                                        'Dump Site Image required',
+                                        snackPosition: SnackPosition.BOTTOM,
+                                        backgroundColor: Get.theme.snackBarTheme
+                                            .backgroundColor,
+                                        colorText: Get.theme.snackBarTheme
+                                            .actionTextColor);
+                                  } else if (address.isEmpty ||
+                                      mapAddress.isEmpty) {
+                                    Get.snackbar('Required field',
+                                        'All fields are required',
+                                        snackPosition: SnackPosition.BOTTOM,
+                                        backgroundColor: Get.theme.snackBarTheme
+                                            .backgroundColor,
+                                        colorText: Get.theme.snackBarTheme
+                                            .actionTextColor);
+                                  } else {
+                                    DumpPost post = DumpPost(
+                                      userId: _authController
+                                          .firebaseUser.value!.uid,
+                                      imageUrl: '',
+                                      landmark: address,
+                                      location: mapAddress,
+                                      coordinate:
+                                          _homeController.coordinate.toString(),
+                                      createdAt: DateTime.now().toString(),
+                                    );
+                                    await _homeController.uploadImage(post);
+                                  }
                                 },
                                 text: 'Make a new Post'),
                       ),
@@ -276,5 +296,4 @@ class ImageSelector extends StatelessWidget {
       ),
     );
   }
-  
 }

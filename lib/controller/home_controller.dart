@@ -47,12 +47,11 @@ class HomeController extends GetxController {
       await ref.putFile(File(filePath.value.toString()));
 
       var url = await ref.getDownloadURL();
-      log(url);
       imageUrl(url);
       await makePost(post);
       isLoading(false);
       filePath('');
-      Get.offAll(() => const DashBoard());
+      Get.back();
     } catch (error) {
       isLoading(false);
       log(error.toString());
@@ -66,7 +65,8 @@ class HomeController extends GetxController {
       "landmark": post.landmark,
       "location": post.location,
       "coordinate": post.coordinate,
-      "created_at": post.createdAt
+      "created_at": post.createdAt,
+      "isPicked": false,
     });
   }
 

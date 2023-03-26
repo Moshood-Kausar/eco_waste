@@ -86,13 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     () => _authController.isLoading.value
                         ? Center(
                             child: SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: SpinKitThreeBounce(
-                              color: AppColor.primary,
-                              size: 16,
+                              height: 30,
+                              width: 30,
+                              child: SpinKitThreeBounce(
+                                color: AppColor.primary,
+                                size: 16,
+                              ),
                             ),
-                          ))
+                          )
                         : SizedBox(
                             width: MediaQuery.of(context).size.width - 20,
                             height: 48.0,
@@ -118,10 +119,14 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const Spacer(),
             GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/signup');
-                },
-                child: const Text('Does not have an account?Sign Up'))
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  '/signup',
+                );
+              },
+              child: const Text('Does not have an account?Sign Up'),
+            )
           ],
         ),
       )),

@@ -13,10 +13,12 @@ class PostListItem extends StatelessWidget {
     required this.location,
     required this.date,
     required this.coordinate,
+    required this.isPicked,
     super.key,
   });
 
   final String imageUrl, landmark, location, date, coordinate;
+  final bool isPicked;
 
   @override
   Widget build(BuildContext context) {
@@ -97,10 +99,19 @@ class PostListItem extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        DateFormat('yyyy-MM-dd – kk:mm')
-                            .format(DateTime.parse(date)),
-                        style: const TextStyle(fontSize: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            DateFormat('yyyy-MM-dd – kk:mm')
+                                .format(DateTime.parse(date)),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            isPicked ? 'Cleared' : 'Not cleared',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
                       ),
                     ],
                   ),

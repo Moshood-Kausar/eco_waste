@@ -84,7 +84,7 @@ class RecycleScreen extends StatelessWidget {
                           RecycleItems(
                             image: 'assets/images/box.png',
                             title: 'Carboard',
-                            value: recycleController.noCarboard.value,
+                            value: recycleController.noCardboard.value,
                           ),
                           RecycleItems(
                             image: 'assets/images/electronics.png',
@@ -118,11 +118,11 @@ class RecycleScreen extends StatelessWidget {
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (!snapshot.hasData) {
-                  return  Center(
+                  return Center(
                     child: SpinKitThreeBounce(
-                                              color: AppColor.primary,
-                                              size: 16,
-                                            ),
+                      color: AppColor.primary,
+                      size: 16,
+                    ),
                   );
                 }
                 switch (snapshot.connectionState) {
@@ -281,23 +281,41 @@ class _RecycleBottomModalState extends State<RecycleBottomModal> {
                   const SizedBox(
                     height: 24,
                   ),
-                  AppButton(
-                      onPressed: () async {
-                        log('clieck');
-                        String qty = amount.text.toString();
+                  Obx(
+                    () => recycleController.isLoading.value
+                        ? Center(
+                            child: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: SpinKitThreeBounce(
+                              color: AppColor.primary,
+                              size: 16,
+                            ),
+                          ))
+                        : AppButton(
+                            onPressed: () async {
+                              String qty = amount.text.toString();
 
-                        if (qty.isNotEmpty && dropdownvalue!.isNotEmpty) {
-                          Recycled recycled = Recycled(
-                              userId: '',
-                              item: dropdownvalue.toString(),
-                              qty: qty,
-                              isPickedUp: false,
-                              createdAt: DateTime.now().toString());
-                          await recycleController.postRecycle(recycled);
-                        }
-                        log('finish');
-                      },
-                      text: 'Recycle'),
+                              if (qty.isNotEmpty && dropdownvalue!.isNotEmpty) {
+                                Recycled recycled = Recycled(
+                                    userId: '',
+                                    item: dropdownvalue.toString(),
+                                    qty: qty,
+                                    isPickedUp: false,
+                                    createdAt: DateTime.now().toString());
+                                await recycleController.postRecycle(recycled);
+                              } else {
+                                Get.snackbar(
+                                    'Required field', 'All fields are required',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor:
+                                        Get.theme.snackBarTheme.backgroundColor,
+                                    colorText: Get
+                                        .theme.snackBarTheme.actionTextColor);
+                              }
+                            },
+                            text: 'Recycle'),
+                  ),
                 ],
               ),
             ),
