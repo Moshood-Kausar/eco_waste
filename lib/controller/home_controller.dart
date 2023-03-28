@@ -21,6 +21,7 @@ class HomeController extends GetxController {
   var fileExt = ''.obs;
   var imageUrl = ''.obs;
   var isLoading = false.obs;
+  var isLoadingLocation = false.obs;
 
   var currentAddress = ''.obs;
   var coordinate = ''.obs;

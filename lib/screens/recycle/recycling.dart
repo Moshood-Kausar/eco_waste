@@ -83,7 +83,7 @@ class RecycleScreen extends StatelessWidget {
                         children: [
                           RecycleItems(
                             image: 'assets/images/box.png',
-                            title: 'Carboard',
+                            title: 'Cardboard',
                             value: recycleController.noCardboard.value,
                           ),
                           RecycleItems(
@@ -113,8 +113,6 @@ class RecycleScreen extends StatelessWidget {
               stream: FirebaseFirestore.instance
                   .collection('user_recycle')
                   .orderBy("created_at", descending: true)
-                  // .where('userID',
-                  //     isEqualTo: _authController.firebaseUser.value!.uid)
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (!snapshot.hasData) {
