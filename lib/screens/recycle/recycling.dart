@@ -111,10 +111,10 @@ class RecycleScreen extends StatelessWidget {
             ),
             StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection('recycle')
-                  .doc('hHbvQclpV7VBTwSIWlfLI2cKQbZ2')
-                  .collection('list')
+                  .collection('user_recycle')
                   .orderBy("created_at", descending: true)
+                  // .where('userID',
+                  //     isEqualTo: _authController.firebaseUser.value!.uid)
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (!snapshot.hasData) {
@@ -137,17 +137,21 @@ class RecycleScreen extends StatelessWidget {
                         itemCount: snapshot.data!.docs.length,
                         // scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
-                          Recycled recycled = Recycled(
-                              userId: snapshot.data!.docs[index]['userID'],
-                              item: snapshot.data!.docs[index]['item'],
-                              qty: snapshot.data!.docs[index]['qty'],
-                              isPickedUp: snapshot.data!.docs[index]
-                                  ['isPickedUp'],
-                              createdAt: snapshot.data!.docs[index]
-                                  ['created_at']);
-                          return ListItemRecycle(
-                            recycled: recycled,
-                          );
+                          if (snapshot.data!.docs[index]['userID'] ==
+                              _authController.firebaseUser.value!.uid) {
+                            Recycled recycled = Recycled(
+                                userId: snapshot.data!.docs[index]['userID'],
+                                item: snapshot.data!.docs[index]['item'],
+                                qty: snapshot.data!.docs[index]['qty'],
+                                isPickedUp: snapshot.data!.docs[index]
+                                    ['isPickedUp'],
+                                createdAt: snapshot.data!.docs[index]
+                                    ['created_at']);
+
+                            return ListItemRecycle(
+                              recycled: recycled,
+                            );
+                          }
                         },
                       ),
                     );

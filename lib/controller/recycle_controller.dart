@@ -62,16 +62,16 @@ class RecycleController extends GetxController {
     try {
       isLoading(true);
       await FirebaseFirestore.instance
-          .collection('recycle')
-          .doc(_authController.firebaseUser.value!.uid)
-          .collection('list')
-          .add({
-            "userID": _authController.firebaseUser.value!.uid,
-            "item": post.item,
-            "qty": post.qty,
-            "isPickedUp": post.isPickedUp,
-            "created_at": post.createdAt
-          })
+          .collection('user_recycle')
+          .add(
+            {
+              "userID": _authController.firebaseUser.value!.uid,
+              "item": post.item,
+              "qty": post.qty,
+              "isPickedUp": post.isPickedUp,
+              "created_at": post.createdAt
+            },
+          )
           .then((value) async => {
                 if (post.item == 'Plastic')
                   {
