@@ -89,7 +89,8 @@ flutter run
 Proper waste disposal is every essential to our environment. Hence the idea to build a solution that will help foster participation in safety of all
 
 ##### Made with ♥ by
-[Kausar] (https://github.com/Moshood-Kausar)
-[Stephen] (https://github.com/SteveOye)
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/Moshood-Kausar/eco_waste)
+[Kausar](https://github.com/Moshood-Kausar)
+
+[Stephen](https://github.com/SteveOye)
+
