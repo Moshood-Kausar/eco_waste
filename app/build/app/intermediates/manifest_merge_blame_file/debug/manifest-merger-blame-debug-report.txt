@@ -1,0 +1,469 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.eco_waste"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:3:5-67
+15-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:3:22-64
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:4:5-79
+16-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:4:22-76
+17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+17-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:5:5-81
+17-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:5:22-78
+18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+18-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:6:5-77
+18-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:6:22-74
+19    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+19-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:7:5-84
+19-->/Users/mac/AndroidStudioProjects/eco_waste/android/app/src/main/AndroidManifest.xml:7:22-82
+20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+20-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-80
+20-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-77
+21
+22    <queries>
+22-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-17:15
+23        <intent>
+23-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-16:18
+24            <action android:name="android.intent.action.GET_CONTENT" />
+24-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-72
+24-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:21-69
+25
+26            <data android:mimeType="*/*" />
+26-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
+26-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:19-41
+27        </intent>
+28        <intent>
+28-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:18
+29            <action android:name="android.support.customtabs.action.CustomTabsService" />
+29-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-90
+29-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-87
+30        </intent>
+31
+32        <package android:name="com.google.android.apps.maps" />
+32-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-64
+32-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-61
+33        <package android:name="com.google.android.apps.mapslite" />
+33-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-68
+33-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:11:18-65
+34        <package android:name="com.autonavi.minimap" />
+34-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-56
+34-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:12:18-53
+35        <package android:name="com.baidu.BaiduMap" />
+35-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-54
+35-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:13:18-51
+36        <package android:name="com.waze" />
+36-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-44
+36-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:14:18-41
+37        <package android:name="ru.yandex.yandexnavi" />
+37-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-56
+37-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:15:18-53
+38        <package android:name="ru.yandex.yandexmaps" />
+38-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-56
+38-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:16:18-53
+39        <package android:name="com.citymapper.app.release" />
+39-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-62
+39-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:17:18-59
+40        <package android:name="com.mapswithme.maps.pro" />
+40-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:18:9-59
+40-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:18:18-56
+41        <package android:name="net.osmand" />
+41-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:19:9-46
+41-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:19:18-43
+42        <package android:name="net.osmand.plus" />
+42-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-51
+42-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:20:18-48
+43        <package android:name="ru.dublgis.dgismobile" />
+43-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-57
+43-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:21:18-54
+44        <package android:name="com.tencent.map" />
+44-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-51
+44-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:22:18-48
+45        <package android:name="com.here.app.maps" />
+45-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-53
+45-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:23:18-50
+46        <package android:name="com.huawei.maps.app" />
+46-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:24:9-55
+46-->[:map_launcher] /Users/mac/AndroidStudioProjects/eco_waste/build/map_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:24:18-52
+47    </queries>
+48
+49    <uses-permission android:name="android.permission.CAMERA" />
+49-->[:camera_android] /Users/mac/AndroidStudioProjects/eco_waste/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-65
+49-->[:camera_android] /Users/mac/AndroidStudioProjects/eco_waste/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-62
+50    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Include required permissions for Google Maps API to run. -->
+50-->[:camera_android] /Users/mac/AndroidStudioProjects/eco_waste/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-71
+50-->[:camera_android] /Users/mac/AndroidStudioProjects/eco_waste/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-68
+51    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+51-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:5-79
+51-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:22-76
+52
+53    <uses-feature
+53-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
+54        android:glEsVersion="0x00020000"
+54-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
+55        android:required="true" />
+55-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
+56
+57    <permission
+57-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+58        android:name="com.example.eco_waste.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+58-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+59        android:protectionLevel="signature" />
+59-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+60
+61    <uses-permission android:name="com.example.eco_waste.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+61-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+61-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+62
+63    <application
+64        android:name="io.flutter.app.FlutterMultiDexApplication"
+65        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+65-->[androidx.core:core:1.9.0] /Users/mac/.gradle/caches/transforms-3/82546ab4767d1df2b6d62dc3a615a8f7/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+66        android:debuggable="true"
+67        android:icon="@mipmap/ic_launcher"
+68        android:label="ECOWASTE" >
+69        <meta-data
+70            android:name="com.google.android.geo.API_KEY"
+71            android:value="AIzaSyB34FpSJSCaKaWqiDry0OVjrAPNIDFrcoA" />
+72
+73        <activity
+74            android:name="com.example.eco_waste.MainActivity"
+75            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+76            android:exported="true"
+77            android:hardwareAccelerated="true"
+78            android:launchMode="singleTop"
+79            android:theme="@style/LaunchTheme"
+80            android:windowSoftInputMode="adjustResize" >
+81
+82            <!--
+83                 Specifies an Android theme to apply to this Activity as soon as
+84                 the Android process has started. This theme is visible to the user
+85                 while the Flutter UI initializes. After that, this theme continues
+86                 to determine the Window background behind the Flutter UI.
+87            -->
+88            <meta-data
+89                android:name="io.flutter.embedding.android.NormalTheme"
+90                android:resource="@style/NormalTheme" />
+91
+92            <intent-filter>
+93                <action android:name="android.intent.action.MAIN" />
+94
+95                <category android:name="android.intent.category.LAUNCHER" />
+96            </intent-filter>
+97        </activity>
+98        <!--
+99             Don't delete the meta-data below.
+100             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+101        -->
+102        <meta-data
+103            android:name="flutterEmbedding"
+104            android:value="2" />
+105
+106        <service
+106-->[:cloud_firestore] /Users/mac/AndroidStudioProjects/eco_waste/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+107            android:name="com.google.firebase.components.ComponentDiscoveryService"
+107-->[:cloud_firestore] /Users/mac/AndroidStudioProjects/eco_waste/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
+108            android:directBootAware="true"
+108-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:34:13-43
+109            android:exported="false" >
+109-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:66:13-37
+110            <meta-data
+110-->[:cloud_firestore] /Users/mac/AndroidStudioProjects/eco_waste/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+111                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+111-->[:cloud_firestore] /Users/mac/AndroidStudioProjects/eco_waste/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
+112                android:value="com.google.firebase.components.ComponentRegistrar" />
+112-->[:cloud_firestore] /Users/mac/AndroidStudioProjects/eco_waste/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+113            <meta-data
+113-->[:firebase_auth] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+114                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+114-->[:firebase_auth] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+115                android:value="com.google.firebase.components.ComponentRegistrar" />
+115-->[:firebase_auth] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+116            <meta-data
+116-->[:firebase_storage] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+117                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+117-->[:firebase_storage] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-126
+118                android:value="com.google.firebase.components.ComponentRegistrar" />
+118-->[:firebase_storage] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+119            <meta-data
+119-->[:firebase_core] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+120                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+120-->[:firebase_core] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+121                android:value="com.google.firebase.components.ComponentRegistrar" />
+121-->[:firebase_core] /Users/mac/AndroidStudioProjects/eco_waste/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+122            <meta-data
+122-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:67:13-69:85
+123                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+123-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:68:17-109
+124                android:value="com.google.firebase.components.ComponentRegistrar" />
+124-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:69:17-82
+125            <meta-data
+125-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mac/.gradle/caches/transforms-3/41698f2dbd5da996535897b76cce2796/transformed/jetified-firebase-firestore-24.4.3/AndroidManifest.xml:19:13-21:85
+126                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+126-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mac/.gradle/caches/transforms-3/41698f2dbd5da996535897b76cce2796/transformed/jetified-firebase-firestore-24.4.3/AndroidManifest.xml:20:17-111
+127                android:value="com.google.firebase.components.ComponentRegistrar" />
+127-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mac/.gradle/caches/transforms-3/41698f2dbd5da996535897b76cce2796/transformed/jetified-firebase-firestore-24.4.3/AndroidManifest.xml:21:17-82
+128            <meta-data
+128-->[com.google.firebase:firebase-storage:20.1.0] /Users/mac/.gradle/caches/transforms-3/81f342884a46218f5b2387a54f27b82e/transformed/jetified-firebase-storage-20.1.0/AndroidManifest.xml:32:13-34:85
+129                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+129-->[com.google.firebase:firebase-storage:20.1.0] /Users/mac/.gradle/caches/transforms-3/81f342884a46218f5b2387a54f27b82e/transformed/jetified-firebase-storage-20.1.0/AndroidManifest.xml:33:17-107
+130                android:value="com.google.firebase.components.ComponentRegistrar" />
+130-->[com.google.firebase:firebase-storage:20.1.0] /Users/mac/.gradle/caches/transforms-3/81f342884a46218f5b2387a54f27b82e/transformed/jetified-firebase-storage-20.1.0/AndroidManifest.xml:34:17-82
+131        </service>
+132        <service
+132-->[:geolocator_android] /Users/mac/AndroidStudioProjects/eco_waste/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-16:56
+133            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+133-->[:geolocator_android] /Users/mac/AndroidStudioProjects/eco_waste/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-77
+134            android:enabled="true"
+134-->[:geolocator_android] /Users/mac/AndroidStudioProjects/eco_waste/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-35
+135            android:exported="false"
+135-->[:geolocator_android] /Users/mac/AndroidStudioProjects/eco_waste/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-37
+136            android:foregroundServiceType="location" />
+136-->[:geolocator_android] /Users/mac/AndroidStudioProjects/eco_waste/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-53
+137
+138        <provider
+138-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+139            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+139-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-82
+140            android:authorities="com.example.eco_waste.flutter.image_provider"
+140-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-74
+141            android:exported="false"
+141-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+142            android:grantUriPermissions="true" >
+142-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+143            <meta-data
+143-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:75
+144                android:name="android.support.FILE_PROVIDER_PATHS"
+144-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+145                android:resource="@xml/flutter_image_picker_file_paths" />
+145-->[:image_picker_android] /Users/mac/AndroidStudioProjects/eco_waste/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-72
+146        </provider>
+147
+148        <activity
+148-->[:url_launcher_android] /Users/mac/AndroidStudioProjects/eco_waste/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+149            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+149-->[:url_launcher_android] /Users/mac/AndroidStudioProjects/eco_waste/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+150            android:exported="false"
+150-->[:url_launcher_android] /Users/mac/AndroidStudioProjects/eco_waste/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+151            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+151-->[:url_launcher_android] /Users/mac/AndroidStudioProjects/eco_waste/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+152        <activity
+152-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-20:47
+153            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+153-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-104
+154            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+154-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-137
+155            android:exported="false"
+155-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
+156            android:theme="@style/AppTheme" />
+156-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-44
+157        <activity
+157-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-24:55
+158            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+158-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-112
+159            android:exported="false"
+159-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-37
+160            android:theme="@style/ThemeTransparent" />
+160-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-52
+161        <activity
+161-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-28:55
+162            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
+162-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-106
+163            android:exported="false"
+163-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-37
+164            android:theme="@style/ThemeTransparent" />
+164-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-52
+165        <activity
+165-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:29:9-33:55
+166            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+166-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-126
+167            android:exported="false"
+167-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-37
+168            android:launchMode="singleInstance"
+168-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-48
+169            android:theme="@style/ThemeTransparent" />
+169-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-52
+170        <activity
+170-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:34:9-38:55
+171            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+171-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-120
+172            android:exported="false"
+172-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-37
+173            android:launchMode="singleInstance"
+173-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-48
+174            android:theme="@style/ThemeTransparent" />
+174-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-52
+175
+176        <receiver
+176-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:40:9-43:40
+177            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
+177-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-111
+178            android:enabled="true"
+178-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-35
+179            android:exported="false" />
+179-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:43:13-37
+180
+181        <meta-data
+181-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:45:9-47:36
+182            android:name="io.flutter.embedded_views_preview"
+182-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-61
+183            android:value="true" />
+183-->[:flutter_inappwebview] /Users/mac/AndroidStudioProjects/eco_waste/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:47:13-33
+184
+185        <service
+185-->[:location] /Users/mac/AndroidStudioProjects/eco_waste/build/location/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-17:56
+186            android:name="com.lyokone.location.FlutterLocationService"
+186-->[:location] /Users/mac/AndroidStudioProjects/eco_waste/build/location/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-71
+187            android:enabled="true"
+187-->[:location] /Users/mac/AndroidStudioProjects/eco_waste/build/location/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-35
+188            android:exported="false"
+188-->[:location] /Users/mac/AndroidStudioProjects/eco_waste/build/location/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+189            android:foregroundServiceType="location" /> <!-- Needs to be explicitly declared on P+ -->
+189-->[:location] /Users/mac/AndroidStudioProjects/eco_waste/build/location/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-53
+190        <uses-library
+190-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
+191            android:name="org.apache.http.legacy"
+191-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
+192            android:required="false" />
+192-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mac/.gradle/caches/transforms-3/2d343665ade3289abaa799768a8e9f4d/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
+193
+194        <activity
+194-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:27:9-44:20
+195            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+195-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:28:13-80
+196            android:excludeFromRecents="true"
+196-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:29:13-46
+197            android:exported="true"
+197-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:30:13-36
+198            android:launchMode="singleTask"
+198-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:31:13-44
+199            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+199-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:32:13-72
+200            <intent-filter>
+200-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:33:13-43:29
+201                <action android:name="android.intent.action.VIEW" />
+201-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:34:17-69
+201-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:34:25-66
+202
+203                <category android:name="android.intent.category.DEFAULT" />
+203-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:36:17-76
+203-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:36:27-73
+204                <category android:name="android.intent.category.BROWSABLE" />
+204-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:37:17-78
+204-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:37:27-75
+205
+206                <data
+206-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
+207                    android:host="firebase.auth"
+208                    android:path="/"
+209                    android:scheme="genericidp" />
+210            </intent-filter>
+211        </activity>
+212        <activity
+212-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:45:9-62:20
+213            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+213-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:46:13-79
+214            android:excludeFromRecents="true"
+214-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:47:13-46
+215            android:exported="true"
+215-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:48:13-36
+216            android:launchMode="singleTask"
+216-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:49:13-44
+217            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+217-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:50:13-72
+218            <intent-filter>
+218-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:51:13-61:29
+219                <action android:name="android.intent.action.VIEW" />
+219-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:34:17-69
+219-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:34:25-66
+220
+221                <category android:name="android.intent.category.DEFAULT" />
+221-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:36:17-76
+221-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:36:27-73
+222                <category android:name="android.intent.category.BROWSABLE" />
+222-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:37:17-78
+222-->[com.google.firebase:firebase-auth:21.1.0] /Users/mac/.gradle/caches/transforms-3/db77909e02725043151ff28d3fe9f329/transformed/jetified-firebase-auth-21.1.0/AndroidManifest.xml:37:27-75
+223
+224                <data
+224-->[:file_picker] /Users/mac/AndroidStudioProjects/eco_waste/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
+225                    android:host="firebase.auth"
+226                    android:path="/"
+227                    android:scheme="recaptcha" />
+228            </intent-filter>
+229        </activity>
+230        <activity
+230-->[com.google.android.gms:play-services-base:18.1.0] /Users/mac/.gradle/caches/transforms-3/ddc9a4db81e88e635fc48d64affdecc6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+231            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+231-->[com.google.android.gms:play-services-base:18.1.0] /Users/mac/.gradle/caches/transforms-3/ddc9a4db81e88e635fc48d64affdecc6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+232            android:exported="false"
+232-->[com.google.android.gms:play-services-base:18.1.0] /Users/mac/.gradle/caches/transforms-3/ddc9a4db81e88e635fc48d64affdecc6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+233            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+233-->[com.google.android.gms:play-services-base:18.1.0] /Users/mac/.gradle/caches/transforms-3/ddc9a4db81e88e635fc48d64affdecc6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+234
+235        <provider
+235-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:25:9-30:39
+236            android:name="com.google.firebase.provider.FirebaseInitProvider"
+236-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:26:13-77
+237            android:authorities="com.example.eco_waste.firebaseinitprovider"
+237-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:27:13-72
+238            android:directBootAware="true"
+238-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:28:13-43
+239            android:exported="false"
+239-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:29:13-37
+240            android:initOrder="100" />
+240-->[com.google.firebase:firebase-common:20.3.0] /Users/mac/.gradle/caches/transforms-3/b24238b145583e9bb28ada432bde27f7/transformed/jetified-firebase-common-20.3.0/AndroidManifest.xml:30:13-36
+241
+242        <meta-data
+242-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mac/.gradle/caches/transforms-3/83770efba2c122ac4d7bf3f6e3fc9396/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+243            android:name="com.google.android.gms.version"
+243-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mac/.gradle/caches/transforms-3/83770efba2c122ac4d7bf3f6e3fc9396/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+244            android:value="@integer/google_play_services_version" />
+244-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mac/.gradle/caches/transforms-3/83770efba2c122ac4d7bf3f6e3fc9396/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+245
+246        <uses-library
+246-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+247            android:name="androidx.window.extensions"
+247-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+248            android:required="false" />
+248-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+249        <uses-library
+249-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+250            android:name="androidx.window.sidecar"
+250-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+251            android:required="false" />
+251-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+252
+253        <provider
+253-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+254            android:name="androidx.startup.InitializationProvider"
+254-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+255            android:authorities="com.example.eco_waste.androidx-startup"
+255-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+256            android:exported="false" >
+256-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+257            <meta-data
+257-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+258                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+258-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+259                android:value="androidx.startup" />
+259-->[androidx.emoji2:emoji2:1.2.0] /Users/mac/.gradle/caches/transforms-3/3f458b27c710c033214b46ad6235ef6e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+260            <meta-data
+260-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mac/.gradle/caches/transforms-3/ebf7841237e70a1980af156fef097570/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+261                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+261-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mac/.gradle/caches/transforms-3/ebf7841237e70a1980af156fef097570/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+262                android:value="androidx.startup" />
+262-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mac/.gradle/caches/transforms-3/ebf7841237e70a1980af156fef097570/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+263        </provider>
+264    </application>
+265
+266</manifest>
