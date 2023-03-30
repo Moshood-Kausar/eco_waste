@@ -1,4 +1,3 @@
-
 <h1 align="left"> EcoWaste </h1>
 <p align="left"><b>GDSC Solution Challenge</b> submission</p>.
 
@@ -94,3 +93,4 @@ Proper waste disposal is every essential to our environment. Hence the idea to b
 
 [Stephen](https://github.com/SteveOye)
 
+[Ebenezar](https://twitter.com/a_classicworld)
