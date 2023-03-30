@@ -1,6 +1,6 @@
-<img src="./designs/hero.png" width="100%"/>
-  <h1 align="left"> EcoWaste </h1>
-<p align="left">A <b>Google DSC Solution Challenge</b> submission</p>.
+
+<h1 align="left"> EcoWaste </h1>
+<p align="left"><b>GDSC Solution Challenge</b> submission</p>.
 
 <p align="left">Eco Waste is a platform built to build community participation in proper waste disposal and recycling. User's get access to report uncleared dump site within their environs and easily recycle items by posting on EcoWaste, making it accesseible to recycling companies to come pick up the items</p>
 
@@ -89,5 +89,7 @@ flutter run
 Proper waste disposal is every essential to our environment. Hence the idea to build a solution that will help foster participation in safety of all
 
 ##### Made with ♥ by
+[Kausar] (https://github.com/Moshood-Kausar)
+[Stephen] (https://github.com/SteveOye)
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/Moshood-Kausar/eco_waste)
