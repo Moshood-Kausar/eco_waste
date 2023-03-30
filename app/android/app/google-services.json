@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "674332352402",
+    "project_id": "eco-waste-sc",
+    "storage_bucket": "eco-waste-sc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674332352402:android:cb382eb4f12e9c8ce3eb4b",
+        "android_client_info": {
+          "package_name": "com.example.eco_waste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674332352402-v5grb8cod1kc5ie8ar9d2u77mqi3d02q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCogxevCWqfDIye-h2KaJoOLwV3kTS1G_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674332352402-v5grb8cod1kc5ie8ar9d2u77mqi3d02q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
