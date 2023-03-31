@@ -1,5 +1,5 @@
 <h1 align="left"> EcoWaste </h1>
-<p align="left"><b>GDSC Solution Challenge</b> submission</p>.
+<p align="left"><b>GDSC Solution Challenge</b> submission</p>
 
 <p align="left">Eco Waste is a platform built to build community participation in proper waste disposal and recycling. User's get access to report uncleared dump site within their environs and easily recycle items by posting on EcoWaste, making it accesseible to recycling companies to come pick up the items</p>
 
@@ -7,7 +7,7 @@
 
 Checkout our submission video below
 
-<a href="http://www.youtube.com/">
+<a href="https://www.youtube.com/watch?v=OkhjaC9-hQo">
 <img src="designs/app_preview.jpeg" width="500px">                                                                                
 </a>
 
